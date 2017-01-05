@@ -10,6 +10,7 @@ Public ERRORSOURCE As String
 
 
 Public Sub Main()
+    'git test
     On Error Resume Next
     SERVERNAME = GetSetting("DMIS 2.0", "SETTINGS", "SERVERNAME")
     SQLSERVERNAME = GetSetting("DMIS 2.0", "SETTINGS", "SQLSERVERNAME")
