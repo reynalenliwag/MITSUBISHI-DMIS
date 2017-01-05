@@ -1,0 +1,283 @@
+USE [DMIS]
+GO
+/****** Update CMIS Table    Script Date: 09/11/2009 10:45 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--=====AMIS========================================================
+--1. UPDATE AMIS_JOURNAL_HD
+IF NOT EXISTS (SELECT * FROM SYSCOLUMNS WHERE ID = OBJECT_ID('AMIS_JOURNAL_HD') AND NAME = 'BANK')
+ALTER TABLE AMIS_JOURNAL_HD
+ADD 	BANK 		nvarchar(6)
+GO
+IF NOT EXISTS (SELECT * FROM SYSCOLUMNS WHERE ID = OBJECT_ID('AMIS_JOURNAL_HD') AND NAME = 'REFERENCENO')
+ALTER TABLE AMIS_JOURNAL_HD
+ADD 	REFERENCENO 	nvarchar(10)
+GO
+IF NOT EXISTS (SELECT * FROM SYSCOLUMNS WHERE ID = OBJECT_ID('AMIS_JOURNAL_HD') AND NAME = 'ENTITY_CLASS')
+ALTER TABLE AMIS_JOURNAL_HD
+ADD 	ENTITY_CLASS	nvarchar(1)
+GO	
+	
+
+2. UPDATE AMIS_JOURNAL_DET
+ALTER TABLE AMIS_JOURNAL_DET
+ADD	REFERENCENO 	nvarchar(10),
+	ENTITY		nvarchar(1)
+
+3. AMIS_REFERENCE
+CREATE TABLE AMIS_Reference
+(
+VOUCHERNO	nvarchar(6),
+JTYPE		nvarchar(3),
+REFERENCENO	nvarchar(10),
+JDATE 		smalldatetime
+)
+
+4. AMIS_RECONHISTORY
+CREATE TABLE AMIS_ReconHistory
+(
+BANKID		integer,
+RECONDATE	smalldatetime,
+BANK		decimal(18,2),	
+BOOK		decimal(18,2),
+ADJUSTED	decimal(18,2)
+)
+
+5. UPDATE VIEW
+AMIS_vw_JOURNAL_HD
+SELECT     dbo.AMIS_Journal_HD.Debit, dbo.AMIS_Journal_HD.Credit, dbo.AMIS_Journal_HD.AmountToPay, dbo.AMIS_Journal_HD.InvoiceAmt, 
+                      dbo.AMIS_Journal_HD.InvoiceNo, dbo.AMIS_Journal_HD.ID, dbo.AMIS_Journal_HD.JNo, dbo.AMIS_Journal_HD.JDate, dbo.AMIS_Journal_HD.JType, 
+                      dbo.AMIS_Journal_HD.VoucherNo, dbo.AMIS_Journal_HD.CheckNo, dbo.AMIS_Journal_HD.InvoiceType, dbo.AMIS_Journal_HD.VendorCode, 
+                      dbo.AMIS_Journal_HD.Status, dbo.AMIS_REFERENCE.REFERENCENO
+FROM         dbo.AMIS_Journal_HD INNER JOIN
+                      dbo.AMIS_REFERENCE ON dbo.AMIS_Journal_HD.VoucherNo = dbo.AMIS_REFERENCE.VOUCHERNO AND 
+                      dbo.AMIS_Journal_HD.JType = dbo.AMIS_REFERENCE.JTYPE
+
+6. CUSTOMERS, VENDORS & EMPLOYEES
+ALL_ENTITY
+SELECT     'C' AS ENTITYCODE, CUSCDE AS CODE, ACCTNAME AS AccountName, CUSTOMERADD AS ALL_ADDRESS, HOMEPHONE AS ALL_PHONE, 
+                      TIN AS ALL_TINNO, ID AS ID
+FROM         dbo.ALL_Customer_Table
+WHERE     (CUSCDE IS NOT NULL)
+UNION ALL
+SELECT     'V' AS ENTITYCODE, Code AS CODE, NameofVendor AS AccountName, Address AS ALL_ADDRESS, Phone AS ALL_PHONE, TIN AS ALL_TINNO, ID AS ID
+FROM         dbo.ALL_Vendor_Table
+WHERE     (Code IS NOT NULL)
+UNION ALL
+SELECT     TOP (100) PERCENT 'E' AS ENTITYCODE, EmpNo AS CODE, { fn UCASE(Lastname) } + ',' + ' ' + { fn UCASE(Firstname) 
+                      } + ' ' + LEFT({ fn UCASE(Middlename) }, 1) + '.' AS AccountName, address AS ALL_ADDRESS, telephone AS ALL_PHONE, tinno AS ALL_TINNO, ID AS ID
+FROM         dbo.HRMS_EmpInfo
+WHERE     (EmpNo IS NOT NULL)
+ORDER BY CODE, AccountName
+
+7. AMIS_CHARTACCOUNT
+ALTER TABLE AMIS_CHARTACCOUNT
+ADD IS_SCHEDULE_ACCNT bit
+
+8. AMIS_RECONSTATUS
+ALTER TABLE AMIS_ReconStatus
+ADD		BankID		nvarchar(6)
+
+9. AMIS_CRJ_DETAIL
+ALTER TABLE AMIS_CRJ_DETAIL
+Add		Cuscde		nvarchar(8)
+
+10. ALL_BANKS
+ALTER TABLE ALL_BANKS
+ADD		UDeposit	decimal(18,2),
+		UBankCharges	decimal(18,2),
+
+		Beginning_Book	Decimal(18,2),
+		Beginning_Bank	Decimal(18,2)
+
+CREATE TABLE AMIS_BANK_OPENING
+(	JDate				smalldatetime,
+	VoucherNo			nvarchar(6), 
+	JType				nvarchar(10),
+	VendorCode			nvarchar(6),
+	CustomerCode		nvarchar(6),
+	CustomerName		nvarchar(50),
+	InvoiceDate			smalldatetime,
+	InvoiceType			nvarchar(20),
+	InvoiceAmnt			decimal(18,2),
+	Duedate				smalldatetime,
+	Paytype				nvarchar(5),				
+	refno				nvarchar(50),		
+	refdate				smalldatetime,
+	terms				nvarchar(5),
+	dealer				nvarchar(50),
+	amounttopay			decimal(18,2),
+	Balance				decimal(18,2),
+	AmountPaid			decimal(18,2),
+	jno					nvarchar(6),
+	debit				decimal(18,2),
+	credit				decimal(18,2),
+	outbalance			decimal(18,2),
+	status				nvarchar(1),
+	CheckNo				nvarchar(50),
+	checkdate			smalldatetime,
+	BankCode			nvarchar(14),
+	remarks				ntext,
+	PaidStatus			nvarchar(1),
+	ReceiveStatus		nvarchar(1),
+	USERCODE			char(3),
+	LASTUPDATE			smalldatetime
+	ID				int identity(1,1) not null
+)
+
+CREATE TABLE AMIS_Books
+(
+	Code	nvarchar(3)	NULL,
+	JType	nvarchar(30)	NULL,
+	ID	int IDENTITY(1,1) NOT NULL
+)
+
+INSERT INTO AMIS_BOOKS(CODE,JTYPE)
+SELECT 'APJ','ACCOUNTS PAYABLE JOURNAL' UNION ALL
+SELECT 'CDJ','CASH DISBURSEMENT JOURNAL' UNION ALL
+SELECT 'SJ','SALES JOURNAL' UNION ALL
+SELECT 'CRJ','CASH RECEIPTS JOURNAL' UNION ALL
+SELECT 'DRJ','DEPOSITED RECEIPTS JOURNAL' UNION ALL
+SELECT 'GJ','GENERAL JOURNAL'
+
+	===================================================
+
+IF NOT EXISTS (SELECT * FROM SYSOBJECTS WHERE ID = OBJECT_ID('AMIS_AccountingPeriod'))
+CREATE TABLE AMIS_AccountingPeriod
+(
+	JType			nvarchar(3)	NULL,	
+	AcctMonth		smalldatetime	NULL,
+	Status			int		NULL,
+	CurrPeriod		bit		NULL,
+	ActivePeriod		bit		NULL,
+	ID			int IDENTITY(1,1) NOT NULL
+)
+
+
+===================================================================
+
+USE DMIS
+IF NOT EXISTS(SELECT * FROM SYSOBJECTS WHERE ID=OBJECT_ID('AMIS_RECONBEGINNING'))
+CREATE TABLE AMIS_RECONBEGINNING
+(
+	JDATE				SMALLDATETIME,
+	CUSTOMERCODE		NVARCHAR(6),
+	VENDORCODE			NVARCHAR(6),
+	PAYTYPE				NVARCHAR(6),
+	BANKCODE			NVARCHAR(10),
+	OR_NUM				NVARCHAR(10),
+	OR_DATE				SMALLDATETIME,
+	OR_AMT				DECIMAL(18,2),
+	CHECKNO				NVARCHAR(10),
+	CHECK_DATE			SMALLDATETIME,
+	CHECK_AMT			DECIMAL(18,2),
+	REMARKS				NTEXT,
+	ID					INT NOT NULL IDENTITY(1,1)
+)
+GO
+
+IF NOT EXISTS (SELECT * FROM SYSCOLUMNS WHERE ID=OBJECT_ID('ALL_BANKS') AND NAME = 'BEGINNING_BOOK')
+ALTER TABLE ALL_BANKS
+ADD 	Beginning_Book	DECIMAL(18,2)
+GO
+
+IF NOT EXISTS (SELECT * FROM SYSCOLUMNS WHERE ID=OBJECT_ID('ALL_BANKS') AND NAME = 'BEGINNING_BANK')
+ALTER TABLE ALL_BANKS
+ADD		Beginning_Bank	DECIMAL(18,2)
+GO
+
+=====CMIS==========================================================
+1. CMIS_OFF_HD
+ALTER TABLE CMIS_OFF_HD
+ADD 	REFERENCENO	nvarchar(8),
+	PAIDBY		nvarchar(1),
+	BANK		nvarchar(6)
+
+2. CMIS_OFF_DT
+ALTER TABLE CMIS_OFF_DT
+ADD	REFERENCENO	nvarchar(8)
+
+
+3. CUSTOMER DEPOSIT
+CREATE TABLE CMIS_Deposits
+(
+Cuscde		nvarchar(6),
+ORDate		smalldatetime,
+OR_Num		nvarchar(6),
+Amount		decimal(18,2),
+Applied		nvarchar(1),
+InvoiceNo	nvarchar(11),
+ID_Det		nvarchar(10),
+PaidFor		nvarchar(10),
+ID		int IDENTITY(1,1) NOT NULL
+)
+
+4. CREDIT CARD BANK
+CREATE TABLE CMIS_CardBank
+(
+Cuscde		nvarchar(6)	CONSTRAINT pk_CMIS_CardBank_Cuscde PRIMARY KEY,
+AcctName	nvarchar(150),
+ID		int IDENTITY(1,1) NOT NULL
+)
+
+CREATE TABLE AMIS_DETAILS
+(
+	VoucherNo		NVARCHAR(12)	Not Null,
+	PV_VOUCHERNO		NVARCHAR(12)	,
+	JDate			SMALLDATETIME	Not Null,
+	VendorCode		NVARCHAR(12)	Not Null,
+	InvoiceNo		NVARCHAR(40)	,
+	InvoiceType		NVARCHAR(28)	,
+	InvoiceAmount		DECIMAL(18,2)	,
+	Acct_Code		NVARCHAR(24)	Not Null,
+	Remarks			NVARCHAR(100),
+	JType			NVARCHAR(3)
+)
+GO
+
+
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+
+
+
+=================================================================
+Global Variable		CMIS
+Public xPAIDFOR                                        As String
+Public vREFERENCENO                                    As String
+Public xBankCode				       as String
+
+Global Variable		AMIS
+Public rEndingBalance                                  As Double
+=================================================================
+
+USE DMIS
+ALTER TABLE AMIS_CV_DETAIL
+ADD		VENDORCODE		NVARCHAR(12),
+		ACCT_CODE		NVARCHAR(12),
+--''''''''''''''''''''''''''''''''''''''''''''''''''''
+		INVOICENO		NVARCHAR(15),
+		INVOICETYPE		NVARCHAR(15),
+		INVOICEDATE		SMALLDATETIME,
+		INVOICEAMOUNT	DECIMAL(18,2)
+--''''''''''''''''''''''''''''''''''''''''''''''''''
+
+USE DMIS
+ALTER VIEW ALL_CUSTMASTER_AMIS
+SELECT     ID, CUSCDE AS CustCode, APOD, LASTNAME, FIRSTNAME, MIDDLEINITIAL AS MiddleName, ACCTNAME AS CustName, LEADSOURCE, SEX, MOBILE, 
+                      TELEPHONENO, BIRTHDATE, ACCTNAME, ACCOUNTNO
+FROM         dbo.ALL_Customer
+
+
+ALTER TABLE CSMS_VW_TINSPAINT
+SELECT     TOP (100) PERCENT DETPRC, DETPRC * (DISCRATE / 100) AS DISCOUNT, WCODE, REP_OR, DEALER_TYPE, DETCOST
+FROM         dbo.CSMS_Ro_Det
+WHERE     (LIVIL = '1') AND (POCODE = '99' OR
+                      POCODE = '60') OR
+                      (LIVIL = '1') AND (JOBTYPE = 'BP') AND (ROTYPE <> 'SR')
+ORDER BY LINE_NO

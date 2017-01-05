@@ -1,0 +1,24 @@
+Line 210: Class MSComCtl2.DTPicker of control dtpromise was not a loaded control class.
+Line 372: Class MSComctlLib.ListView of control lblTech was not a loaded control class.
+Line 217: The property name _ExtentX in dtpromise is invalid.
+Line 218: The property name _ExtentY in dtpromise is invalid.
+Line 219: The property name _Version in dtpromise is invalid.
+Line 220: The property name Format in dtpromise is invalid.
+Line 221: The property name CurrentDate in dtpromise is invalid.
+Line 378: The property name _ExtentX in lblTech is invalid.
+Line 379: The property name _ExtentY in lblTech is invalid.
+Line 380: The property name View in lblTech is invalid.
+Line 381: The property name LabelEdit in lblTech is invalid.
+Line 382: The property name Sorted in lblTech is invalid.
+Line 383: The property name LabelWrap in lblTech is invalid.
+Line 384: The property name HideSelection in lblTech is invalid.
+Line 385: The property name AllowReorder in lblTech is invalid.
+Line 386: The property name Checkboxes in lblTech is invalid.
+Line 387: The property name FullRowSelect in lblTech is invalid.
+Line 388: The property name GridLines in lblTech is invalid.
+Line 389: The property name _Version in lblTech is invalid.
+Line 405: The property name NumItems in lblTech is invalid.
+Line 409: The property name ColumnHeader(1) in lblTech is invalid.
+Line 414: The property name ColumnHeader(2) in lblTech is invalid.
+Line 419: The property name ColumnHeader(3) in lblTech is invalid.
+Line 372: Property MouseIcon in lblTech could not be set.

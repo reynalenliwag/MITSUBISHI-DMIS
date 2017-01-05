@@ -1,0 +1,2 @@
+ALTER TABLE CMIS_Off_Dt ADD Deposits decimal(18, 2)
+ALTER TABLE CMIS_Off_Dt ADD DEPOSITID nvarchar(3)

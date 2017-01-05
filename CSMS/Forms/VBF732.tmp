@@ -1,0 +1,35 @@
+VERSION 5.00
+Object = "{00025600-0000-0000-C000-000000000046}#5.2#0"; "Crystl32.OCX"
+Object = "{D6EB33F3-3D5F-4DF1-9472-D7CF0724D0AC}#1.0#0"; "XPButton.ocx"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
+Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#10.4#0"; "CO301B~1.OCX"
+Object = "{C8E5842E-102B-4289-9D57-3B3F5B5E15D3}#10.4#0"; "CO774D~1.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MsComCtl.ocx"
+Begin VB.Form frmCSMSEstimateEntry 
+   BorderStyle     =   1  'Fixed Single
+   Caption         =   "Estimate Data Entry"
+   ClientHeight    =   7050
+   ClientLeft      =   1635
+   ClientTop       =   1905
+   ClientWidth     =   10380
+   ClipControls    =   0   'False
+   BeginProperty Font 
+      Name            =   "Arial"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   ForeColor       =   &H00DEDFDE&
+   Icon            =   "EstimateEntry.frx":0000
+   KeyPreview      =   -1  'True
+   LinkTopic       =   "Form1"
+   LockControls    =   -1  'True
+   MaxButton       =   0   'False
+   MDIChild        =   -1  'True
+   ScaleHeight     =   7050
+   ScaleWidth      =   10380
+End

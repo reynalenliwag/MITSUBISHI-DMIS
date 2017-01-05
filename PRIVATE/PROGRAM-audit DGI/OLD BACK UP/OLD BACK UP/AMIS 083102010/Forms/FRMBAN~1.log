@@ -1,0 +1,88 @@
+Line 86: Class MSComCtl2.DTPicker of control dtFrom was not a loaded control class.
+Line 109: Class MSComCtl2.DTPicker of control dtTO was not a loaded control class.
+Line 204: Class XtremeSuiteControls.TabControl of control SSTab1 was not a loaded control class.
+Line 233: Class XtremeSuiteControls.TabControlPage of control TabControlPage1 was not a loaded control class.
+Line 432: Class MSComctlLib.ListView of control lstQuiry was not a loaded control class.
+Line 541: Class XtremeSuiteControls.TabControlPage of control TabControlPage2 was not a loaded control class.
+Line 552: Class Crystal.CrystalReport of control rptBankRecon was not a loaded control class.
+Line 578: Class FlexCell.Grid of control grdRecom was not a loaded control class.
+Line 592: Class wizFlexCracker.wizFlexCrack of control wizFlexCrack1 was not a loaded control class.
+Line 92: The property name _ExtentX in dtFrom is invalid.
+Line 93: The property name _ExtentY in dtFrom is invalid.
+Line 94: The property name _Version in dtFrom is invalid.
+Line 105: The property name CustomFormat in dtFrom is invalid.
+Line 106: The property name Format in dtFrom is invalid.
+Line 107: The property name CurrentDate in dtFrom is invalid.
+Line 115: The property name _ExtentX in dtTO is invalid.
+Line 116: The property name _ExtentY in dtTO is invalid.
+Line 117: The property name _Version in dtTO is invalid.
+Line 127: The property name CustomFormat in dtTO is invalid.
+Line 128: The property name Format in dtTO is invalid.
+Line 129: The property name CurrentDate in dtTO is invalid.
+Line 210: The property name _Version in SSTab1 is invalid.
+Line 211: The property name _ExtentX in SSTab1 is invalid.
+Line 212: The property name _ExtentY in SSTab1 is invalid.
+Line 213: The property name _StockProps in SSTab1 is invalid.
+Line 215: The property name Color in SSTab1 is invalid.
+Line 216: The property name PaintManager.BoldSelected in SSTab1 is invalid.
+Line 217: The property name PaintManager.DisableLunaColors in SSTab1 is invalid.
+Line 218: The property name PaintManager.OneNoteColors in SSTab1 is invalid.
+Line 219: The property name PaintManager.HotTracking in SSTab1 is invalid.
+Line 220: The property name PaintManager.ShowIcons in SSTab1 is invalid.
+Line 221: The property name PaintManager.LargeIcons in SSTab1 is invalid.
+Line 222: The property name ItemCount in SSTab1 is invalid.
+Line 223: The property name Item(0).Caption in SSTab1 is invalid.
+Line 224: The property name Item(0).Tooltip in SSTab1 is invalid.
+Line 225: The property name Item(0).ControlCount in SSTab1 is invalid.
+Line 226: The property name Item(0).Control(0) in SSTab1 is invalid.
+Line 227: The property name Item(0).Control(1) in SSTab1 is invalid.
+Line 228: The property name Item(1).Caption in SSTab1 is invalid.
+Line 229: The property name Item(1).Tooltip in SSTab1 is invalid.
+Line 230: The property name Item(1).ControlCount in SSTab1 is invalid.
+Line 231: The property name Item(1).Control(0) in SSTab1 is invalid.
+Line 232: The property name Item(1).Control(1) in SSTab1 is invalid.
+Line 204: Property Appearance in SSTab1 could not be set.
+Line 239: The property name _Version in TabControlPage1 is invalid.
+Line 240: The property name _ExtentX in TabControlPage1 is invalid.
+Line 241: The property name _ExtentY in TabControlPage1 is invalid.
+Line 242: The property name _StockProps in TabControlPage1 is invalid.
+Line 438: The property name _ExtentX in lstQuiry is invalid.
+Line 439: The property name _ExtentY in lstQuiry is invalid.
+Line 440: The property name View in lstQuiry is invalid.
+Line 441: The property name LabelEdit in lstQuiry is invalid.
+Line 442: The property name Sorted in lstQuiry is invalid.
+Line 443: The property name LabelWrap in lstQuiry is invalid.
+Line 444: The property name HideSelection in lstQuiry is invalid.
+Line 445: The property name AllowReorder in lstQuiry is invalid.
+Line 446: The property name FullRowSelect in lstQuiry is invalid.
+Line 447: The property name GridLines in lstQuiry is invalid.
+Line 448: The property name _Version in lstQuiry is invalid.
+Line 464: The property name NumItems in lstQuiry is invalid.
+Line 468: The property name ColumnHeader(1) in lstQuiry is invalid.
+Line 473: The property name ColumnHeader(2) in lstQuiry is invalid.
+Line 478: The property name ColumnHeader(3) in lstQuiry is invalid.
+Line 483: The property name ColumnHeader(4) in lstQuiry is invalid.
+Line 488: The property name ColumnHeader(5) in lstQuiry is invalid.
+Line 493: The property name ColumnHeader(6) in lstQuiry is invalid.
+Line 498: The property name ColumnHeader(7) in lstQuiry is invalid.
+Line 503: The property name ColumnHeader(8) in lstQuiry is invalid.
+Line 508: The property name ColumnHeader(9) in lstQuiry is invalid.
+Line 513: The property name ColumnHeader(10) in lstQuiry is invalid.
+Line 432: Property MouseIcon in lstQuiry could not be set.
+Line 548: The property name _Version in TabControlPage2 is invalid.
+Line 549: The property name _ExtentX in TabControlPage2 is invalid.
+Line 550: The property name _ExtentY in TabControlPage2 is invalid.
+Line 551: The property name _StockProps in TabControlPage2 is invalid.
+Line 555: The property name _ExtentX in rptBankRecon is invalid.
+Line 556: The property name _ExtentY in rptBankRecon is invalid.
+Line 557: The property name _Version in rptBankRecon is invalid.
+Line 558: The property name PrintFileLinesPerPage in rptBankRecon is invalid.
+Line 584: The property name _ExtentX in grdRecom is invalid.
+Line 585: The property name _ExtentY in grdRecom is invalid.
+Line 586: The property name BackColorBkg in grdRecom is invalid.
+Line 587: The property name Cols in grdRecom is invalid.
+Line 588: The property name DefaultFontName in grdRecom is invalid.
+Line 589: The property name DefaultFontSize in grdRecom is invalid.
+Line 590: The property name Rows in grdRecom is invalid.
+Line 598: The property name _ExtentX in wizFlexCrack1 is invalid.
+Line 599: The property name _ExtentY in wizFlexCrack1 is invalid.

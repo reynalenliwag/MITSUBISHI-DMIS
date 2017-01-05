@@ -1,0 +1,4 @@
+Line 83: Class MSComctlLib.ListView of control ListView1 was not a loaded control class.
+Line 496: Class MSComCtl2.DTPicker of control txtStartTime was not a loaded control class.
+Line 518: Class MSComCtl2.DTPicker of control txtdtDate was not a loaded control class.
+Line 541: Class MSComCtl2.DTPicker of control txtEndTime was not a loaded control class.

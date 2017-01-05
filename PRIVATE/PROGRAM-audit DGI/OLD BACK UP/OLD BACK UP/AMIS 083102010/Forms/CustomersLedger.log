@@ -1,0 +1,6 @@
+Line 38: Class MSComCtl2.DTPicker of control dtFrom was not a loaded control class.
+Line 337: Class MSComctlLib.ListView of control lstCustomer was not a loaded control class.
+Line 497: Class XtremeReportControl.ReportControl of control rptLedger was not a loaded control class.
+Line 508: Class MSComctlLib.ListView of control lvwLedger was not a loaded control class.
+Line 679: Class MSFlexGridLib.MSFlexGrid of control grdAccountsLedger was not a loaded control class.
+Line 759: Class MSComCtl2.DTPicker of control dtTo was not a loaded control class.

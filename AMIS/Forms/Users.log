@@ -1,0 +1,66 @@
+Line 29: Class MSComctlLib.ListView of control lvwUsers was not a loaded control class.
+Line 279: Class MSForms.CommandButton of control cmdRefresh was not a loaded control class.
+Line 295: Class MSForms.CommandButton of control cmdDelete was not a loaded control class.
+Line 311: Class MSForms.CommandButton of control cmdSave was not a loaded control class.
+Line 329: Class MSForms.CommandButton of control cmdNew was not a loaded control class.
+Line 344: Class MSForms.CommandButton of control cmdAddMod was not a loaded control class.
+Line 359: Class MSForms.CommandButton of control cmdEdit was not a loaded control class.
+Line 35: The property name _ExtentX in lvwUsers is invalid.
+Line 36: The property name _ExtentY in lvwUsers is invalid.
+Line 37: The property name View in lvwUsers is invalid.
+Line 38: The property name LabelEdit in lvwUsers is invalid.
+Line 39: The property name LabelWrap in lvwUsers is invalid.
+Line 40: The property name HideSelection in lvwUsers is invalid.
+Line 41: The property name FullRowSelect in lvwUsers is invalid.
+Line 42: The property name _Version in lvwUsers is invalid.
+Line 56: The property name NumItems in lvwUsers is invalid.
+Line 60: The property name ColumnHeader(1) in lvwUsers is invalid.
+Line 65: The property name ColumnHeader(2) in lvwUsers is invalid.
+Line 70: The property name ColumnHeader(3) in lvwUsers is invalid.
+Line 285: The property name Caption in cmdRefresh is invalid.
+Line 286: The property name PicturePosition in cmdRefresh is invalid.
+Line 287: The property name Size in cmdRefresh is invalid.
+Line 290: The property name FontHeight in cmdRefresh is invalid.
+Line 291: The property name FontCharSet in cmdRefresh is invalid.
+Line 292: The property name FontPitchAndFamily in cmdRefresh is invalid.
+Line 293: The property name ParagraphAlign in cmdRefresh is invalid.
+Line 279: Property Picture in cmdRefresh could not be set.
+Line 301: The property name Caption in cmdDelete is invalid.
+Line 302: The property name PicturePosition in cmdDelete is invalid.
+Line 303: The property name Size in cmdDelete is invalid.
+Line 306: The property name FontHeight in cmdDelete is invalid.
+Line 307: The property name FontCharSet in cmdDelete is invalid.
+Line 308: The property name FontPitchAndFamily in cmdDelete is invalid.
+Line 309: The property name ParagraphAlign in cmdDelete is invalid.
+Line 295: Property Picture in cmdDelete could not be set.
+Line 317: The property name VariousPropertyBits in cmdSave is invalid.
+Line 318: The property name Caption in cmdSave is invalid.
+Line 319: The property name PicturePosition in cmdSave is invalid.
+Line 320: The property name Size in cmdSave is invalid.
+Line 323: The property name FontEffects in cmdSave is invalid.
+Line 324: The property name FontHeight in cmdSave is invalid.
+Line 325: The property name FontCharSet in cmdSave is invalid.
+Line 326: The property name FontPitchAndFamily in cmdSave is invalid.
+Line 327: The property name ParagraphAlign in cmdSave is invalid.
+Line 311: Property Picture in cmdSave could not be set.
+Line 335: The property name Caption in cmdNew is invalid.
+Line 336: The property name PicturePosition in cmdNew is invalid.
+Line 337: The property name Size in cmdNew is invalid.
+Line 339: The property name FontHeight in cmdNew is invalid.
+Line 340: The property name FontCharSet in cmdNew is invalid.
+Line 341: The property name FontPitchAndFamily in cmdNew is invalid.
+Line 342: The property name ParagraphAlign in cmdNew is invalid.
+Line 350: The property name Caption in cmdAddMod is invalid.
+Line 351: The property name PicturePosition in cmdAddMod is invalid.
+Line 352: The property name Size in cmdAddMod is invalid.
+Line 354: The property name FontHeight in cmdAddMod is invalid.
+Line 355: The property name FontCharSet in cmdAddMod is invalid.
+Line 356: The property name FontPitchAndFamily in cmdAddMod is invalid.
+Line 357: The property name ParagraphAlign in cmdAddMod is invalid.
+Line 366: The property name Caption in cmdEdit is invalid.
+Line 367: The property name PicturePosition in cmdEdit is invalid.
+Line 368: The property name Size in cmdEdit is invalid.
+Line 370: The property name FontHeight in cmdEdit is invalid.
+Line 371: The property name FontCharSet in cmdEdit is invalid.
+Line 372: The property name FontPitchAndFamily in cmdEdit is invalid.
+Line 373: The property name ParagraphAlign in cmdEdit is invalid.

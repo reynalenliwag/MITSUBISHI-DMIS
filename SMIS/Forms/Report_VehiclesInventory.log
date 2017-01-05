@@ -1,0 +1,4 @@
+Line 59: Class Crystal.CrystalReport of control rptInvent was not a loaded control class.
+Line 108: Class MSComCtl2.DTPicker of control txtDate was not a loaded control class.
+Line 238: Class MSComCtl2.DTPicker of control datepFrom was not a loaded control class.
+Line 259: Class MSComCtl2.DTPicker of control datepTo was not a loaded control class.

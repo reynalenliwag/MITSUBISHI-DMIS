@@ -1,0 +1,251 @@
+Line 25: Class TabDlg.SSTab of control JournalTAB was not a loaded control class.
+Line 142: Class MSMask.MaskEdBox of control txtMRR_No was not a loaded control class.
+Line 166: Class MSMask.MaskEdBox of control txtPVAmount was not a loaded control class.
+Line 189: Class MSMask.MaskEdBox of control txtINV_No was not a loaded control class.
+Line 212: Class MSMask.MaskEdBox of control txtPO_No was not a loaded control class.
+Line 235: Class MSMask.MaskEdBox of control txtProd_No was not a loaded control class.
+Line 258: Class MSMask.MaskEdBox of control txtPVItemNo was not a loaded control class.
+Line 610: Class RichTextLib.RichTextBox of control txtAcct_Name was not a loaded control class.
+Line 1154: Class wizButton.cmd of control cmdAddJournal was not a loaded control class.
+Line 1369: Class MSComctlLib.ListView of control lstDetails was not a loaded control class.
+Line 1435: Class wizButton.cmd of control cmdPV_Entry was not a loaded control class.
+Line 1468: Class MSMask.MaskEdBox of control txtTotalPV_Amount was not a loaded control class.
+Line 1492: Class MSComctlLib.ListView of control lstPV_Detail was not a loaded control class.
+Line 1667: Class RichTextLib.RichTextBox of control txtRemarks2 was not a loaded control class.
+Line 2345: Class RichTextLib.RichTextBox of control txtRemarks was not a loaded control class.
+Line 2562: Class RichTextLib.RichTextBox of control txtParticulars was not a loaded control class.
+Line 2900: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption3 was not a loaded control class.
+Line 2923: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption5 was not a loaded control class.
+Line 2946: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption4 was not a loaded control class.
+Line 2969: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption2 was not a loaded control class.
+Line 2994: Class Crystal.CrystalReport of control rptAP was not a loaded control class.
+Line 3052: Class wizButton.cmd of control cmdShowPostRange was not a loaded control class.
+Line 3443: Class MSComctlLib.ListView of control lstAccounts was not a loaded control class.
+Line 3560: Class wizButton.cmd of control cmdTemplates was not a loaded control class.
+Line 3611: Class MSComctlLib.ListView of control lstTemplates was not a loaded control class.
+Line 3677: Class wizButton.cmd of control cmdFindAccount was not a loaded control class.
+Line 31: The property name _ExtentX in JournalTAB is invalid.
+Line 32: The property name _ExtentY in JournalTAB is invalid.
+Line 33: The property name _Version in JournalTAB is invalid.
+Line 34: The property name TabOrientation in JournalTAB is invalid.
+Line 35: The property name Tabs in JournalTAB is invalid.
+Line 36: The property name TabsPerRow in JournalTAB is invalid.
+Line 37: The property name TabHeight in JournalTAB is invalid.
+Line 47: The property name TabCaption(0) in JournalTAB is invalid.
+Line 48: The property name TabPicture(0) in JournalTAB is invalid.
+Line 49: The property name Tab(0).ControlEnabled in JournalTAB is invalid.
+Line 50: The property name Tab(0).Control(0) in JournalTAB is invalid.
+Line 51: The property name Tab(0).Control(0).Enabled in JournalTAB is invalid.
+Line 52: The property name Tab(0).Control(1) in JournalTAB is invalid.
+Line 53: The property name Tab(0).Control(1).Enabled in JournalTAB is invalid.
+Line 54: The property name Tab(0).Control(2) in JournalTAB is invalid.
+Line 55: The property name Tab(0).Control(2).Enabled in JournalTAB is invalid.
+Line 56: The property name Tab(0).ControlCount in JournalTAB is invalid.
+Line 57: The property name TabCaption(1) in JournalTAB is invalid.
+Line 58: The property name TabPicture(1) in JournalTAB is invalid.
+Line 59: The property name Tab(1).ControlEnabled in JournalTAB is invalid.
+Line 60: The property name Tab(1).Control(0) in JournalTAB is invalid.
+Line 61: The property name Tab(1).Control(1) in JournalTAB is invalid.
+Line 62: The property name Tab(1).Control(2) in JournalTAB is invalid.
+Line 63: The property name Tab(1).ControlCount in JournalTAB is invalid.
+Line 149: The property name _ExtentX in txtMRR_No is invalid.
+Line 150: The property name _ExtentY in txtMRR_No is invalid.
+Line 151: The property name _Version in txtMRR_No is invalid.
+Line 154: The property name MaxLength in txtMRR_No is invalid.
+Line 164: The property name PromptChar in txtMRR_No is invalid.
+Line 172: The property name _ExtentX in txtPVAmount is invalid.
+Line 173: The property name _ExtentY in txtPVAmount is invalid.
+Line 174: The property name _Version in txtPVAmount is invalid.
+Line 186: The property name Format in txtPVAmount is invalid.
+Line 187: The property name PromptChar in txtPVAmount is invalid.
+Line 195: The property name _ExtentX in txtINV_No is invalid.
+Line 196: The property name _ExtentY in txtINV_No is invalid.
+Line 197: The property name _Version in txtINV_No is invalid.
+Line 200: The property name MaxLength in txtINV_No is invalid.
+Line 210: The property name PromptChar in txtINV_No is invalid.
+Line 218: The property name _ExtentX in txtPO_No is invalid.
+Line 219: The property name _ExtentY in txtPO_No is invalid.
+Line 220: The property name _Version in txtPO_No is invalid.
+Line 223: The property name MaxLength in txtPO_No is invalid.
+Line 233: The property name PromptChar in txtPO_No is invalid.
+Line 241: The property name _ExtentX in txtProd_No is invalid.
+Line 242: The property name _ExtentY in txtProd_No is invalid.
+Line 243: The property name _Version in txtProd_No is invalid.
+Line 246: The property name MaxLength in txtProd_No is invalid.
+Line 256: The property name PromptChar in txtProd_No is invalid.
+Line 264: The property name _ExtentX in txtPVItemNo is invalid.
+Line 265: The property name _ExtentY in txtPVItemNo is invalid.
+Line 266: The property name _Version in txtPVItemNo is invalid.
+Line 279: The property name Format in txtPVItemNo is invalid.
+Line 280: The property name PromptChar in txtPVItemNo is invalid.
+Line 616: The property name _ExtentX in txtAcct_Name is invalid.
+Line 617: The property name _ExtentY in txtAcct_Name is invalid.
+Line 618: The property name _Version in txtAcct_Name is invalid.
+Line 621: The property name MultiLine in txtAcct_Name is invalid.
+Line 622: The property name TextRTF in txtAcct_Name is invalid.
+Line 1160: The property name _ExtentX in cmdAddJournal is invalid.
+Line 1161: The property name _ExtentY in cmdAddJournal is invalid.
+Line 1162: The property name TX in cmdAddJournal is invalid.
+Line 1163: The property name ENAB in cmdAddJournal is invalid.
+Line 1173: The property name FOCUSR in cmdAddJournal is invalid.
+Line 1174: The property name MPTR in cmdAddJournal is invalid.
+Line 1175: The property name MICON in cmdAddJournal is invalid.
+Line 1375: The property name _ExtentX in lstDetails is invalid.
+Line 1376: The property name _ExtentY in lstDetails is invalid.
+Line 1377: The property name View in lstDetails is invalid.
+Line 1378: The property name LabelEdit in lstDetails is invalid.
+Line 1379: The property name Sorted in lstDetails is invalid.
+Line 1380: The property name LabelWrap in lstDetails is invalid.
+Line 1381: The property name HideSelection in lstDetails is invalid.
+Line 1382: The property name AllowReorder in lstDetails is invalid.
+Line 1383: The property name FullRowSelect in lstDetails is invalid.
+Line 1384: The property name GridLines in lstDetails is invalid.
+Line 1385: The property name _Version in lstDetails is invalid.
+Line 1401: The property name NumItems in lstDetails is invalid.
+Line 1405: The property name ColumnHeader(1) in lstDetails is invalid.
+Line 1410: The property name ColumnHeader(2) in lstDetails is invalid.
+Line 1415: The property name ColumnHeader(3) in lstDetails is invalid.
+Line 1421: The property name ColumnHeader(4) in lstDetails is invalid.
+Line 1427: The property name ColumnHeader(5) in lstDetails is invalid.
+Line 1432: The property name ColumnHeader(6) in lstDetails is invalid.
+Line 1369: Property MouseIcon in lstDetails could not be set.
+Line 1441: The property name _ExtentX in cmdPV_Entry is invalid.
+Line 1442: The property name _ExtentY in cmdPV_Entry is invalid.
+Line 1443: The property name TX in cmdPV_Entry is invalid.
+Line 1444: The property name ENAB in cmdPV_Entry is invalid.
+Line 1454: The property name FOCUSR in cmdPV_Entry is invalid.
+Line 1455: The property name MPTR in cmdPV_Entry is invalid.
+Line 1456: The property name MICON in cmdPV_Entry is invalid.
+Line 1474: The property name _ExtentX in txtTotalPV_Amount is invalid.
+Line 1475: The property name _ExtentY in txtTotalPV_Amount is invalid.
+Line 1476: The property name _Version in txtTotalPV_Amount is invalid.
+Line 1489: The property name Format in txtTotalPV_Amount is invalid.
+Line 1490: The property name PromptChar in txtTotalPV_Amount is invalid.
+Line 1498: The property name _ExtentX in lstPV_Detail is invalid.
+Line 1499: The property name _ExtentY in lstPV_Detail is invalid.
+Line 1500: The property name View in lstPV_Detail is invalid.
+Line 1501: The property name LabelEdit in lstPV_Detail is invalid.
+Line 1502: The property name Sorted in lstPV_Detail is invalid.
+Line 1503: The property name LabelWrap in lstPV_Detail is invalid.
+Line 1504: The property name HideSelection in lstPV_Detail is invalid.
+Line 1505: The property name AllowReorder in lstPV_Detail is invalid.
+Line 1506: The property name FullRowSelect in lstPV_Detail is invalid.
+Line 1507: The property name GridLines in lstPV_Detail is invalid.
+Line 1508: The property name HoverSelection in lstPV_Detail is invalid.
+Line 1509: The property name _Version in lstPV_Detail is invalid.
+Line 1525: The property name NumItems in lstPV_Detail is invalid.
+Line 1529: The property name ColumnHeader(1) in lstPV_Detail is invalid.
+Line 1534: The property name ColumnHeader(2) in lstPV_Detail is invalid.
+Line 1539: The property name ColumnHeader(3) in lstPV_Detail is invalid.
+Line 1545: The property name ColumnHeader(4) in lstPV_Detail is invalid.
+Line 1551: The property name ColumnHeader(5) in lstPV_Detail is invalid.
+Line 1557: The property name ColumnHeader(6) in lstPV_Detail is invalid.
+Line 1562: The property name ColumnHeader(7) in lstPV_Detail is invalid.
+Line 1492: Property MouseIcon in lstPV_Detail could not be set.
+Line 1673: The property name _ExtentX in txtRemarks2 is invalid.
+Line 1674: The property name _ExtentY in txtRemarks2 is invalid.
+Line 1675: The property name _Version in txtRemarks2 is invalid.
+Line 1678: The property name ScrollBars in txtRemarks2 is invalid.
+Line 1679: The property name TextRTF in txtRemarks2 is invalid.
+Line 2351: The property name _ExtentX in txtRemarks is invalid.
+Line 2352: The property name _ExtentY in txtRemarks is invalid.
+Line 2353: The property name _Version in txtRemarks is invalid.
+Line 2356: The property name ScrollBars in txtRemarks is invalid.
+Line 2357: The property name TextRTF in txtRemarks is invalid.
+Line 2568: The property name _ExtentX in txtParticulars is invalid.
+Line 2569: The property name _ExtentY in txtParticulars is invalid.
+Line 2570: The property name _Version in txtParticulars is invalid.
+Line 2573: The property name ScrollBars in txtParticulars is invalid.
+Line 2574: The property name TextRTF in txtParticulars is invalid.
+Line 2906: The property name _Version in ShortcutCaption3 is invalid.
+Line 2907: The property name _ExtentX in ShortcutCaption3 is invalid.
+Line 2908: The property name _ExtentY in ShortcutCaption3 is invalid.
+Line 2909: The property name _StockProps in ShortcutCaption3 is invalid.
+Line 2910: The property name Caption in ShortcutCaption3 is invalid.
+Line 2920: The property name VisualTheme in ShortcutCaption3 is invalid.
+Line 2921: The property name Alignment in ShortcutCaption3 is invalid.
+Line 2929: The property name _Version in ShortcutCaption5 is invalid.
+Line 2930: The property name _ExtentX in ShortcutCaption5 is invalid.
+Line 2931: The property name _ExtentY in ShortcutCaption5 is invalid.
+Line 2932: The property name _StockProps in ShortcutCaption5 is invalid.
+Line 2933: The property name Caption in ShortcutCaption5 is invalid.
+Line 2943: The property name VisualTheme in ShortcutCaption5 is invalid.
+Line 2944: The property name Alignment in ShortcutCaption5 is invalid.
+Line 2952: The property name _Version in ShortcutCaption4 is invalid.
+Line 2953: The property name _ExtentX in ShortcutCaption4 is invalid.
+Line 2954: The property name _ExtentY in ShortcutCaption4 is invalid.
+Line 2955: The property name _StockProps in ShortcutCaption4 is invalid.
+Line 2956: The property name Caption in ShortcutCaption4 is invalid.
+Line 2966: The property name VisualTheme in ShortcutCaption4 is invalid.
+Line 2967: The property name Alignment in ShortcutCaption4 is invalid.
+Line 2975: The property name _Version in ShortcutCaption2 is invalid.
+Line 2976: The property name _ExtentX in ShortcutCaption2 is invalid.
+Line 2977: The property name _ExtentY in ShortcutCaption2 is invalid.
+Line 2978: The property name _StockProps in ShortcutCaption2 is invalid.
+Line 2979: The property name Caption in ShortcutCaption2 is invalid.
+Line 2989: The property name VisualTheme in ShortcutCaption2 is invalid.
+Line 2990: The property name Alignment in ShortcutCaption2 is invalid.
+Line 2997: The property name _ExtentX in rptAP is invalid.
+Line 2998: The property name _ExtentY in rptAP is invalid.
+Line 2999: The property name _Version in rptAP is invalid.
+Line 3000: The property name WindowTitle in rptAP is invalid.
+Line 3001: The property name WindowControlBox in rptAP is invalid.
+Line 3002: The property name WindowMaxButton in rptAP is invalid.
+Line 3003: The property name WindowMinButton in rptAP is invalid.
+Line 3004: The property name WindowState in rptAP is invalid.
+Line 3005: The property name PrintFileLinesPerPage in rptAP is invalid.
+Line 3006: The property name WindowShowPrintSetupBtn in rptAP is invalid.
+Line 3007: The property name WindowShowRefreshBtn in rptAP is invalid.
+Line 3058: The property name _ExtentX in cmdShowPostRange is invalid.
+Line 3059: The property name _ExtentY in cmdShowPostRange is invalid.
+Line 3060: The property name TX in cmdShowPostRange is invalid.
+Line 3061: The property name ENAB in cmdShowPostRange is invalid.
+Line 3071: The property name FOCUSR in cmdShowPostRange is invalid.
+Line 3072: The property name MPTR in cmdShowPostRange is invalid.
+Line 3073: The property name MICON in cmdShowPostRange is invalid.
+Line 3449: The property name _ExtentX in lstAccounts is invalid.
+Line 3450: The property name _ExtentY in lstAccounts is invalid.
+Line 3451: The property name View in lstAccounts is invalid.
+Line 3452: The property name LabelEdit in lstAccounts is invalid.
+Line 3453: The property name Sorted in lstAccounts is invalid.
+Line 3454: The property name LabelWrap in lstAccounts is invalid.
+Line 3455: The property name HideSelection in lstAccounts is invalid.
+Line 3456: The property name AllowReorder in lstAccounts is invalid.
+Line 3457: The property name FullRowSelect in lstAccounts is invalid.
+Line 3458: The property name GridLines in lstAccounts is invalid.
+Line 3459: The property name _Version in lstAccounts is invalid.
+Line 3475: The property name NumItems in lstAccounts is invalid.
+Line 3479: The property name ColumnHeader(1) in lstAccounts is invalid.
+Line 3484: The property name ColumnHeader(2) in lstAccounts is invalid.
+Line 3489: The property name ColumnHeader(3) in lstAccounts is invalid.
+Line 3495: The property name ColumnHeader(4) in lstAccounts is invalid.
+Line 3443: Property MouseIcon in lstAccounts could not be set.
+Line 3566: The property name _ExtentX in cmdTemplates is invalid.
+Line 3567: The property name _ExtentY in cmdTemplates is invalid.
+Line 3568: The property name TX in cmdTemplates is invalid.
+Line 3569: The property name ENAB in cmdTemplates is invalid.
+Line 3579: The property name FOCUSR in cmdTemplates is invalid.
+Line 3580: The property name MPTR in cmdTemplates is invalid.
+Line 3581: The property name MICON in cmdTemplates is invalid.
+Line 3617: The property name _ExtentX in lstTemplates is invalid.
+Line 3618: The property name _ExtentY in lstTemplates is invalid.
+Line 3619: The property name View in lstTemplates is invalid.
+Line 3620: The property name LabelEdit in lstTemplates is invalid.
+Line 3621: The property name Sorted in lstTemplates is invalid.
+Line 3622: The property name LabelWrap in lstTemplates is invalid.
+Line 3623: The property name HideSelection in lstTemplates is invalid.
+Line 3624: The property name AllowReorder in lstTemplates is invalid.
+Line 3625: The property name FullRowSelect in lstTemplates is invalid.
+Line 3626: The property name GridLines in lstTemplates is invalid.
+Line 3627: The property name _Version in lstTemplates is invalid.
+Line 3643: The property name NumItems in lstTemplates is invalid.
+Line 3647: The property name ColumnHeader(1) in lstTemplates is invalid.
+Line 3653: The property name ColumnHeader(2) in lstTemplates is invalid.
+Line 3611: Property MouseIcon in lstTemplates could not be set.
+Line 3683: The property name _ExtentX in cmdFindAccount is invalid.
+Line 3684: The property name _ExtentY in cmdFindAccount is invalid.
+Line 3685: The property name TX in cmdFindAccount is invalid.
+Line 3686: The property name ENAB in cmdFindAccount is invalid.
+Line 3696: The property name FOCUSR in cmdFindAccount is invalid.
+Line 3697: The property name MPTR in cmdFindAccount is invalid.
+Line 3698: The property name MICON in cmdFindAccount is invalid.

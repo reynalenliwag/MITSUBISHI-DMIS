@@ -1,0 +1,13 @@
+Line 30: Property MouseIcon in cmdExit could not be set.
+Line 30: Property Picture in cmdExit could not be set.
+Line 52: Property MouseIcon in cmdPrint could not be set.
+Line 74: Property MouseIcon in cmdDelete could not be set.
+Line 96: Property MouseIcon in cmdEdit could not be set.
+Line 118: Property MouseIcon in cmdAdd could not be set.
+Line 140: Property MouseIcon in cmdFind could not be set.
+Line 162: Property MouseIcon in cmdNext could not be set.
+Line 184: Property MouseIcon in cmdPrevious could not be set.
+Line 216: Property MouseIcon in cmdCancel could not be set.
+Line 216: Property Picture in cmdCancel could not be set.
+Line 238: Property MouseIcon in cmdSave could not be set.
+Line 238: Property Picture in cmdSave could not be set.

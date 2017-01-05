@@ -1,0 +1,5 @@
+Line 30: Class XtremeReportControl.ReportControl of control lvInquiry was not a loaded control class.
+Line 90: Class XtremeCalendarControl.CalendarControl of control CLEN was not a loaded control class.
+Line 138: Class XtremeCalendarControl.DatePicker of control DatePicker1 was not a loaded control class.
+Line 209: Class MSComCtl2.DTPicker of control dtpToDate was not a loaded control class.
+Line 231: Class MSComCtl2.DTPicker of control dtpFromDate was not a loaded control class.

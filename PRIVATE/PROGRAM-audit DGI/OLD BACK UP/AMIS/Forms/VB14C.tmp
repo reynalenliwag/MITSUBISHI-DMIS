@@ -1,0 +1,932 @@
+VERSION 5.00
+Begin VB.Form Form1 
+   BorderStyle     =   1  'Fixed Single
+   Caption         =   "AMIS Fixer"
+   ClientHeight    =   5820
+   ClientLeft      =   315
+   ClientTop       =   765
+   ClientWidth     =   2670
+   LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
+   ScaleHeight     =   5820
+   ScaleWidth      =   2670
+   StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton Command1 
+      Caption         =   "Account with Invalid Title Code"
+      Height          =   645
+      Left            =   120
+      TabIndex        =   7
+      Top             =   5070
+      Width           =   2445
+   End
+   Begin VB.CommandButton cmdInvalidAcctCode 
+      Caption         =   "Invalid Account Code"
+      Height          =   645
+      Left            =   120
+      TabIndex        =   6
+      Top             =   4350
+      Width           =   2445
+   End
+   Begin VB.CommandButton checkWOSTotals 
+      Caption         =   "Check Acct W/O Acct Totals"
+      Height          =   645
+      Left            =   120
+      TabIndex        =   5
+      Top             =   3630
+      Width           =   2445
+   End
+   Begin VB.CommandButton cmdShowErrorQuery 
+      Caption         =   "Show Error Query"
+      Height          =   645
+      Left            =   120
+      TabIndex        =   4
+      Top             =   2880
+      Width           =   2445
+   End
+   Begin VB.CommandButton cmdCheckErrorTrans 
+      Caption         =   "Check Error Journals"
+      Height          =   645
+      Left            =   120
+      TabIndex        =   3
+      Top             =   2160
+      Width           =   2445
+   End
+   Begin VB.CommandButton cmdRefreshJno 
+      Caption         =   "Refresh Voucher No"
+      Height          =   585
+      Left            =   120
+      TabIndex        =   2
+      Top             =   1500
+      Width           =   2445
+   End
+   Begin VB.CommandButton cmdARRefresh 
+      Caption         =   "AR Refresh"
+      Height          =   615
+      Left            =   120
+      TabIndex        =   1
+      Top             =   810
+      Width           =   2445
+   End
+   Begin VB.CommandButton cmdRefreshEntries 
+      Caption         =   "AMIS Refresher for Entries"
+      Height          =   615
+      Left            =   120
+      TabIndex        =   0
+      Top             =   120
+      Width           =   2445
+   End
+End
+Attribute VB_Name = "Form1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+
+Private Sub checkWOSTotals_Click()
+CheckAccountsNotInTitleCode
+End Sub
+
+Private Sub cmdARRefresh_Click()
+Dim PV_PONO, PV_MRRNO, PV_INVNO, PV_PRODNO         As String
+Dim J_JVOUCHERNO                                   As String
+Dim J_JDATE As String
+Dim PV_AMOUNT                                      As Double
+Dim PV_STATUS, PV_ITEMNO                           As String
+    
+Dim rsOFF_HD As ADODB.Recordset
+Dim rsOFF_DT As ADODB.Recordset
+
+Dim rsJournal_HD As ADODB.Recordset
+Dim rsCRJ_Detail As ADODB.Recordset
+Dim PayTranType As String
+Dim PayInvoiceNo As String
+Dim PayAmount As Double
+
+gconDMIS.Execute ("Update AMIS_Journal_HD Set Balance = InvoiceAmt, AmountToPay = InvoiceAmt, AmountPaid = 0, PaidStatus = 'N', ReceiveStatus = 'N' Where JTYPE = 'SJ'")
+Set rsOFF_HD = New ADODB.Recordset
+'Set rsOFF_HD = gconDMIS.Execute("Select * from CMIS_OFF_HD where OR_DATE = '8/16/2007' Order by ID ASC")
+Set rsOFF_HD = gconDMIS.Execute("Select * from CMIS_OFF_HD Order by ID ASC")
+If Not rsOFF_HD.EOF And Not rsOFF_HD.BOF Then
+   rsOFF_HD.MoveFirst: I = 0
+   Do While Not rsOFF_HD.EOF
+      J_JDATE = N2Date2Null(rsOFF_HD!OR_DATE)
+      Set rsOFF_DT = New ADODB.Recordset
+      Set rsOFF_DT = gconDMIS.Execute("Select * from CMIS_OFF_DT WHERE (TRANTYPE <> 'OTH' OR PAIDFOR = 'SII' OR PAIDFOR = 'VII') AND OR_NUM = " & N2Str2Null(rsOFF_HD!OR_NUM))
+      If Not rsOFF_DT.EOF And Not rsOFF_DT.BOF Then
+         rsOFF_DT.MoveFirst
+         Do While Not rsOFF_DT.EOF
+            If Null2String(rsOFF_DT!TRANTYPE) = "OTH" Then
+               If Null2String(rsOFF_DT!PAIDFOR) = "SII" Then
+                  PayTranType = "SI"
+                  If Left(Null2String(rsOFF_DT!DESCRIPT), 3) = "ROB" Then
+                     PayInvoiceNo = Format(Mid(Null2String(rsOFF_DT!DESCRIPT), 4, Len(Null2String(rsOFF_DT!DESCRIPT)) - 3), "000000")
+                  End If
+               ElseIf Null2String(rsOFF_DT!PAIDFOR) = "VII" Then
+                  PayTranType = "VI"
+                  PayInvoiceNo = Null2String(rsOFF_DT!InvoiceNo)
+               Else
+                  MsgBox Null2String(rsOFF_DT!PAIDFOR)
+                  PayTranType = Null2String(rsOFF_DT!PAIDFOR)
+                  PayInvoiceNo = Format(Right(Null2String(rsOFF_DT!DESCRIPT), 4), "000000")
+               End If
+            Else
+               PayTranType = Null2String(rsOFF_DT!TRANTYPE)
+               PayInvoiceNo = Null2String(rsOFF_DT!InvoiceNo)
+            End If
+            
+            PayAmount = N2Str2Zero(rsOFF_DT!PAYMENT)
+            
+            Set rsSJ_DATA = New ADODB.Recordset
+            Set rsSJ_DATA = gconDMIS.Execute("Select * from AMIS_Journal_HD Where CustomerCode = " & N2Str2Null(rsOFF_DT!CUSCDE) & " AND jtype = 'SJ' and invoicetype = " & N2Str2Null(PayTranType) & " and invoiceno = " & N2Str2Null(PayInvoiceNo))
+            If Not rsSJ_DATA.EOF And Not rsSJ_DATA.BOF Then
+               'gconDMIS.Execute ("Delete from AMIS_CRJ_Detail where InvoiceType = " & N2Str2Null(rsOFF_DT!TRANTYPE) & " AND INVOICENO = " & N2Str2Null(rsOFF_DT!InvoiceNo))
+               rsSJ_DATA.MoveFirst
+               Do While Not rsSJ_DATA.EOF
+                  J_JVOUCHERNO = "'" & SetCRJVoucherNo(Null2String(rsOFF_HD!OR_NUM), Null2String(rsOFF_HD!VAT)) & "'"
+                  PV_ITEMNO = N2Str2Null(Format(SJ_PV_ITEMNO, "0000"))
+                  PV_MRRNO = N2Str2Null(rsOFF_DT!TRANTYPE)
+                  PV_INVNO = N2Str2Null(rsOFF_DT!InvoiceNo)
+                  PV_PRODNO = N2Date2Null(rsSJ_DATA!InvoiceDate)
+                  PV_AMOUNT = PayAmount 'N2Str2Zero(rsSJ_DATA!InvoiceAmt)
+                  PV_STATUS = "'N'"
+                  'If PayTranType = "VII" Or PayTranType = "SII" Then Stop
+                  'gconDMIS.Execute "Delete from AMIS_CRJ_Detail Where VoucherNo = " & J_JVOUCHERNO & " AND JDate = " & J_JDATE & _
+                                                 " AND ItemNo = " & PV_ITEMNO & " AND INVOICETYPE = " & PV_MRRNO & _
+                                                 " AND INVOICENO = " & PV_INVNO & " AND INVOICEDATE = " & PV_PRODNO & " AND INVOICEAMOUNT = " & PV_AMOUNT
+                  'gconDMIS.Execute "Delete from AMIS_CRJ_Detail Where VoucherNo = " & J_JVOUCHERNO & " AND (JDate = " & J_JDATE & " OR INVOICEAMOUNT = " & PV_AMOUNT & ")" & _
+                                                 " AND INVOICETYPE = " & PV_MRRNO & _
+                                                 " AND INVOICENO = " & PV_INVNO & " AND INVOICEDATE = " & PV_PRODNO
+                  gconDMIS.Execute "Delete from AMIS_CRJ_Detail Where VoucherNo = " & J_JVOUCHERNO & " AND INVOICEAMOUNT = " & PV_AMOUNT & _
+                                                 " AND INVOICETYPE = " & PV_MRRNO & _
+                                                 " AND INVOICENO = " & PV_INVNO & " AND INVOICEDATE = " & PV_PRODNO
+                  gconDMIS.Execute "insert into AMIS_CRJ_Detail " & _
+                                   "(VoucherNo,Jdate,itemno,INVOICETYPE,INVOICENO,INVOICEDATE,INVOICEAMOUNT,status)" & _
+                                   " values (" & J_JVOUCHERNO & "," & J_JDATE & ", " & PV_ITEMNO & _
+                                   ", " & PV_MRRNO & ", " & PV_INVNO & ", " & PV_PRODNO & ", " & PV_AMOUNT & _
+                                   ", " & PV_STATUS & ")"
+                        
+                  Set rsCheckJournal_HD = New ADODB.Recordset
+                  Set rsCheckJournal_HD = gconDMIS.Execute("Select * from AMIS_Journal_HD Where ID  = " & rsSJ_DATA!ID)
+                  If Not rsCheckJournal_HD.EOF And Not rsCheckJournal_HD.BOF Then
+                     If N2Str2Zero(rsCheckJournal_HD!InvoiceAmt) <= PV_AMOUNT Then
+                        gconDMIS.Execute "update AMIS_Journal_HD set" & _
+                                         " ReceiveStatus = 'Y' " & "," & _
+                                         " AmountPaid = AmountPaid + " & PV_AMOUNT & "," & _
+                                         " Balance = Balance - " & PV_AMOUNT & _
+                                         " where ID = " & rsSJ_DATA!ID
+                     Else
+                        gconDMIS.Execute "update AMIS_Journal_HD set" & _
+                                         " ReceiveStatus = 'N' " & "," & _
+                                         " AmountPaid = AmountPaid + " & PV_AMOUNT & "," & _
+                                         " Balance = Balance - " & PV_AMOUNT & _
+                                         " where ID = " & rsSJ_DATA!ID
+                     End If
+                  Else
+                     Set rsCheckJournal_HD = New ADODB.Recordset
+                     Set rsCheckJournal_HD = gconDMIS.Execute("Select * from AMIS_Journal_HD Where InvoiceType = " & PV_MRRNO & " and InvoiceNo = " & PV_INVNO & " and Jtype = 'CSJ'")
+                     If Not rsCheckJournal_HD.EOF And Not rsCheckJournal_HD.BOF Then
+                        If N2Str2Zero(rsCheckJournal_HD!InvoiceAmt) <= PV_AMOUNT Then
+                           gconDMIS.Execute "update AMIS_Journal_HD set" & _
+                                            " ReceiveStatus = 'Y' " & "," & _
+                                            " AmountPaid = AmountPaid + " & PV_AMOUNT & "," & _
+                                            " Balance = Balance - " & PV_AMOUNT & _
+                                            " where InvoiceType = " & PV_MRRNO & " and InvoiceNo = " & PV_INVNO & " and Jtype = 'CSJ'"
+                        Else
+                           gconDMIS.Execute "update AMIS_Journal_HD set" & _
+                                            " ReceiveStatus = 'N' " & "," & _
+                                            " AmountPaid = AmountPaid + " & PV_AMOUNT & "," & _
+                                            " Balance = Balance - " & PV_AMOUNT & _
+                                            " where InvoiceType = " & PV_MRRNO & " and InvoiceNo = " & PV_INVNO & " and Jtype = 'CSJ'"
+                        End If
+                     End If
+                   End If
+                   rsSJ_DATA.MoveNext
+               Loop
+            End If
+            rsOFF_DT.MoveNext
+         Loop
+      End If
+      I = I + 1
+      'progCPB.Value = (I / rsOFF_HD.RecordCount) * 100
+      'labCPB.Caption = Int(progCPB.Value) & "% Completed"
+      DoEvents
+      rsOFF_HD.MoveNext
+   Loop
+End If
+MsgBox "AR Refresh Tapos"
+Exit Sub
+
+
+'UnBalanceCRJ:
+'
+'Dim rsCRJ_HD As ADODB.Recordset
+'Dim rsCRJ_Det As ADODB.Recordset
+'
+'Set rsCRJ_HD = New ADODB.Recordset
+'Set rsCRJ_HD = gconDMIS.Execute("Select * from AMIS_Journal_HD where JTYPE = 'CRJ' Order by id asc")
+'If Not rsCRJ_HD.EOF And Not rsCRJ_HD.BOF Then
+'   rsCRJ_HD.MoveFirst
+'   Do While Not rsCRJ_HD.EOF
+'      Set rsCRJ_Det = New ADODB.Recordset
+'      Set rsCRJ_Det = gconDMIS.Execute("Select SUM(INVOICEAMOUNT) as TOTALPAYMENT from AMIS_CRJ_Detail where VoucherNo = " & N2Str2Null(rsCRJ_HD!VoucherNo))
+'      If Not rsCRJ_Det.EOF And Not rsCRJ_Det.BOF Then
+'         If N2Str2Zero(rsCRJ_Det!TOTALPAYMENT) <> N2Str2Zero(rsCRJ_HD!InvoiceAmt) And N2Str2Zero(rsCRJ_Det!TOTALPAYMENT) > 0 Then
+'            gconDMIS.Execute "Update AMIS_Journal_HD Set Dealer = 'CRJ' Where id = " & rsCRJ_HD!ID
+'         End If
+'      End If
+'      rsCRJ_HD.MoveNext
+'   Loop
+'End If
+'MsgBox "Ok na"
+'Exit Sub
+End Sub
+
+Function SetCRJVoucherNo(XXX As String, ZZZ As Integer) As String
+Dim rsCRJ_Journal_HD As ADODB.Recordset
+Set rsCRJ_Journal_HD = New ADODB.Recordset
+If ZZZ = 1 Then
+   Set rsCRJ_Journal_HD = gconDMIS.Execute("Select * from AMIS_Journal_HD where Jtype = 'CRJ' and InvoiceNo = '" & XXX & "'")
+Else
+   Set rsCRJ_Journal_HD = gconDMIS.Execute("Select * from AMIS_Journal_HD where Jtype = 'CRJ' and LEFT(InvoiceNo,2) = 'NV' AND RIGHT(InvoiceNo,6) = '" & XXX & "'")
+End If
+If Not rsCRJ_Journal_HD.EOF And Not rsCRJ_Journal_HD.BOF Then
+   SetCRJVoucherNo = Null2String(rsCRJ_Journal_HD!VOUCHERNO)
+End If
+End Function
+
+
+Private Sub cmdCheckErrorTrans_Click()
+frmAMISCheckDupTrans.Show
+End Sub
+
+Private Sub cmdInvalidAcctCode_Click()
+Dim rsJournal_Det As ADODB.Recordset
+Dim rsChartAccount As ADODB.Recordset
+Screen.MousePointer = 11
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_Det order by JDate asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Do While Not rsJournal_Det.EOF
+      Set rsChartAccount = New ADODB.Recordset
+      Set rsChartAccount = gconDMIS.Execute("Select * from AMIS_ChartAccount Where AcctCode = " & N2Str2Null(rsJournal_Det!Acct_Code))
+      If rsChartAccount.EOF And rsChartAccount.BOF Then
+         MsgBox "Invalid Account! " & vbCrLf & _
+                "Account Code : " & rsJournal_Det!Acct_Code & vbCrLf & _
+                "Account Desc : " & rsJournal_Det!acct_Name
+      End If
+      Me.Caption = rsJournal_Det!jType & " " & rsJournal_Det!VOUCHERNO: DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+End If
+Screen.MousePointer = 0
+MsgBox "Done"
+End Sub
+
+Private Sub cmdRefreshEntries_Click()
+Dim rsJournal_Det As ADODB.Recordset
+Dim rsJournal_HD As ADODB.Recordset
+
+gconDMIS.Execute ("DELETE from AMIS_Journal_Det WHERE VOUCHERNO IS NULL")
+gconDMIS.Execute ("DELETE from AMIS_Journal_HD WHERE VOUCHERNO IS NULL")
+
+'Check Un-Balance
+Set rsJournal_HD = New ADODB.Recordset
+Set rsJournal_HD = gconDMIS.Execute("Select * from AMIS_Journal_HD where jtype <> 'OPB' AND STATUS = 'P' Order by id asc")
+If Not rsJournal_HD.EOF And Not rsJournal_HD.BOF Then
+   rsJournal_HD.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_HD.EOF
+      Set rsJournal_Det = New ADODB.Recordset
+      Set rsJournal_Det = gconDMIS.Execute("Select SUM(DEBIT) AS TotalDebit,SUM(CREDIT) AS TotalCredit from AMIS_Journal_Det Where JType = " & N2Str2Null(rsJournal_HD!jType) & " And VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO) & " AND STATUS = 'P'")
+      If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+         If Round(N2Str2Zero(rsJournal_Det!TotalDebit), 2) <> Round(N2Str2Zero(rsJournal_Det!Totalcredit), 2) Then
+            gconDMIS.Execute "update AMIS_Journal_HD set " & _
+                             " Debit = " & Round(N2Str2Zero(rsJournal_Det!TotalDebit), 2) & "," & _
+                             " Credit = " & Round(N2Str2Zero(rsJournal_Det!Totalcredit), 2) & "," & _
+                             " Status = 'N'" & _
+                             " Where JType = " & N2Str2Null(rsJournal_HD!jType) & " AND VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO)
+            gconDMIS.Execute "update AMIS_Journal_Det set " & _
+                             " Status = 'N'" & _
+                             " Where JType = " & N2Str2Null(rsJournal_HD!jType) & " AND VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO)
+         Else
+            gconDMIS.Execute "update AMIS_Journal_HD set " & _
+                             " Debit = " & Round(N2Str2Zero(rsJournal_Det!TotalDebit), 2) & "," & _
+                             " Credit = " & Round(N2Str2Zero(rsJournal_Det!Totalcredit), 2) & "," & _
+                             " Status = 'P'" & _
+                             " Where JType = " & N2Str2Null(rsJournal_HD!jType) & " AND VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO)
+            gconDMIS.Execute "update AMIS_Journal_Det set " & _
+                             " Status = 'P'" & _
+                             " Where JType = " & N2Str2Null(rsJournal_HD!jType) & " AND VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO)
+         End If
+      Else
+         gconDMIS.Execute ("Update AMIS_Journal_HD Set Status = 'N' where id = " & rsJournal_HD!ID)
+      End If
+      Me.Caption = rsJournal_HD!jType & " " & rsJournal_HD!VOUCHERNO: DoEvents
+      rsJournal_HD.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+
+gconDMIS.Execute ("Update AMIS_Journal_HD Set STATUS = 'N' WHERE STATUS <> 'P' AND STATUS <> 'C'")
+gconDMIS.Execute ("Update AMIS_Journal_Det Set STATUS = 'N' WHERE STATUS <> 'P' AND STATUS <> 'C'")
+
+'Check Lost
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_Det order by JNO ASC")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Do While Not rsJournal_Det.EOF
+      Set rsJournal_HD = New ADODB.Recordset
+      Set rsJournal_HD = gconDMIS.Execute("Select * from AMIS_journal_HD where Jtype = " & N2Str2Null(rsJournal_Det!jType) & " and VoucherNo = " & N2Str2Null(rsJournal_Det!VOUCHERNO))
+      If rsJournal_HD.EOF And rsJournal_HD.BOF Then
+         gconDMIS.Execute ("Delete from AMIS_Journal_Det where ID = " & rsJournal_Det!ID)
+      End If
+      Me.Caption = rsJournal_Det!jType & rsJournal_Det!VOUCHERNO: DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+End If
+
+'Refresh Amounts
+Dim rsJournal_Det_Trans As ADODB.Recordset
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select VoucherNo,Jtype from AMIS_Journal_Det Group By Jtype,VoucherNo Having (SUM(Debit) <> SUM(Credit)) Order by Jtype,VoucherNo")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Do While Not rsJournal_Det.EOF
+      Set rsJournal_Det_Trans = New ADODB.Recordset
+      Set rsJournal_Det_Trans = gconDMIS.Execute("Select * from AMIS_Journal_Det Where JType = " & N2Str2Null(rsJournal_Det!jType) & " AND VoucherNo = " & N2Str2Null(rsJournal_Det!VOUCHERNO) & " Order by JItemNo asc")
+      If Not rsJournal_Det_Trans.EOF And Not rsJournal_Det_Trans.BOF Then
+         rsJournal_Det_Trans.MoveFirst
+         Do While Not rsJournal_Det_Trans.EOF
+            gconDMIS.Execute ("Update AMIS_Journal_Det set Debit = " & Round(NumericVal(rsJournal_Det_Trans!DEBIT), 2) & ", Credit = " & Round(NumericVal(rsJournal_Det_Trans!CREDIT), 2) & " where id = " & rsJournal_Det_Trans!ID)
+            rsJournal_Det_Trans.MoveNext
+         Loop
+      End If
+      rsJournal_Det.MoveNext
+   Loop
+End If
+
+MsgBox "AMIS Fixer Completed"
+End Sub
+
+Private Sub cmdRefreshTemplates_Click()
+Dim rsChartAccount As ADODB.Recordset
+Dim rsTemplate_Header As ADODB.Recordset
+Dim rsTemplate_Details As ADODB.Recordset
+Repeat: Set rsTemplate_Details = New ADODB.Recordset
+Set rsTemplate_Details = gconDMIS.Execute("Select * from AMIS_Template_Details")
+If Not rsTemplate_Details.EOF And Not rsTemplate_Details.BOF Then
+   rsTemplate_Details.MoveFirst
+   'MsgBox "Poon"
+   Do While Not rsTemplate_Details.EOF
+      Set rsTemplate_Header = New ADODB.Recordset
+      Set rsTemplate_Header = gconDMIS.Execute("Select * from AMIS_Template_Header Where TemplateCode = " & N2Str2Null(rsTemplate_Details!TemplateCode))
+      If Not rsTemplate_Header.EOF And Not rsTemplate_Header.BOF Then
+         Set rsChartAccount = New ADODB.Recordset
+         Set rsChartAccount = gconDMIS.Execute("Select * from AMIS_ChartAccount where AcctCode = " & N2Str2Null(rsTemplate_Details!AccountCode))
+         If Not rsChartAccount.EOF And Not rsChartAccount.BOF Then
+            gconDMIS.Execute ("update AMIS_Template_Details Set Description = " & UCase(N2Str2Null(rsChartAccount!Description)) & " Where Code = " & rsTemplate_Details!code)
+         Else
+            'MsgBox "Invalid Account Code for this Template... this Template will be Automatically deleted after this message"
+            gconDMIS.Execute ("Delete from AMIS_Template_Details where Code = " & rsTemplate_Details!code)
+            'gconDMIS.Execute ("Delete from AMIS_Template_Header where TemplateCode = " & rsTemplate_Details!TemplateCode)
+            'GoTo Repeat
+            'gconDMIS.Execute ("update AMIS_Template_Details Set Remarks = 'Invalid' Where Code = " & rsTemplate_Details!Code)
+         End If
+      Else
+         'MsgBox "Invalid Template Code for this Template... this Template will be Automatically deleted after this message"
+         gconDMIS.Execute ("Delete from AMIS_Template_Details where Code = " & rsTemplate_Details!code)
+         'GoTo Repeat
+      End If
+      rsTemplate_Details.MoveNext
+   Loop
+   MsgBox "Tapos"
+End If
+End Sub
+
+Private Sub UpdateJournalNo()
+Dim rsJournal_Det As ADODB.Recordset
+Dim rsChartAccounts As ADODB.Recordset
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_HD order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      gconDMIS.Execute ("Update AMIS_Journal_Det set JNo = " & N2Str2Null(rsJournal_Det!JNo) & ", Jdate = " & N2Date2Null(rsJournal_Det!Jdate) & ", status = " & N2Str2Null(rsJournal_Det!Status) & " where VoucherNo = " & N2Str2Null(rsJournal_Det!VOUCHERNO) & " and Jtype = " & N2Str2Null(rsJournal_Det!jType))
+      Me.Caption = rsJournal_Det!JNo: DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+MsgBox "ok"
+Exit Sub
+
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_HD where status = 'P' order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      Set rsChartAccounts = New ADODB.Recordset
+      Set rsChartAccounts = gconDMIS.Execute("Select * from AMIS_Journal_det where Jtype = " & N2Str2Null(rsJournal_Det!jType) & " and voucherno = " & N2Str2Null(rsJournal_Det!VOUCHERNO) & " and status <> 'P'")
+      If Not rsChartAccounts.EOF And Not rsChartAccounts.BOF Then
+         gconDMIS.Execute ("update AMIS_Journal_Det set status = 'P' where id = " & rsChartAccounts!ID)
+         'MsgBox "Invalid Posted Transaction" & vbCrLf & _
+                Null2String(rsChartAccounts!acct_code) & " " & Null2String(rsChartAccounts!acct_Name) & vbCrLf & _
+                Null2String(rsJOURNAL_DET!Jtype) & "-" & Null2String(rsJOURNAL_DET!voucherno)
+      End If
+      Me.Caption = Null2String(rsJournal_Det!JNo): DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_HD where status = 'N' order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      Set rsChartAccounts = New ADODB.Recordset
+      Set rsChartAccounts = gconDMIS.Execute("Select * from AMIS_Journal_det where Jtype = " & N2Str2Null(rsJournal_Det!jType) & " and voucherno = " & N2Str2Null(rsJournal_Det!VOUCHERNO) & " and status <> 'N'")
+      If Not rsChartAccounts.EOF And Not rsChartAccounts.BOF Then
+         gconDMIS.Execute ("update AMIS_Journal_Det set status = 'N' where id = " & rsChartAccounts!ID)
+         'MsgBox "Invalid Un-Posted Transaction" & vbCrLf & _
+                Null2String(rsChartAccounts!acct_code) & " " & Null2String(rsChartAccounts!acct_Name) & vbCrLf & _
+                Null2String(rsJOURNAL_DET!Jtype) & "-" & Null2String(rsJOURNAL_DET!voucherno)
+      End If
+      Me.Caption = Null2String(rsJournal_Det!JNo): DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_HD where status = 'C' order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      Set rsChartAccounts = New ADODB.Recordset
+      Set rsChartAccounts = gconDMIS.Execute("Select * from AMIS_Journal_det where Jtype = " & N2Str2Null(rsJournal_Det!jType) & " and voucherno = " & N2Str2Null(rsJournal_Det!VOUCHERNO) & " and status <> 'C'")
+      If Not rsChartAccounts.EOF And Not rsChartAccounts.BOF Then
+         gconDMIS.Execute ("update AMIS_Journal_Det set status = 'C' where id = " & rsChartAccounts!ID)
+         'MsgBox "Invalid Cancelled Transaction" & vbCrLf & _
+                Null2String(rsChartAccounts!acct_code) & " " & Null2String(rsChartAccounts!acct_Name) & vbCrLf & _
+                Null2String(rsJOURNAL_DET!Jtype) & "-" & Null2String(rsJOURNAL_DET!voucherno)
+      End If
+      Me.Caption = Null2String(rsJournal_Det!JNo): DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+
+
+
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_HD order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      gconDMIS.Execute ("Update AMIS_Journal_Det set JNo = " & N2Str2Null(rsJournal_Det!JNo) & ", Jdate = " & N2Date2Null(rsJournal_Det!Jdate) & ", status = " & N2Str2Null(rsJournal_Det!Status) & " where VoucherNo = " & N2Str2Null(rsJournal_Det!VOUCHERNO) & " and Jtype = " & N2Str2Null(rsJournal_Det!jType))
+      Me.Caption = rsJournal_Det!JNo: DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+MsgBox "ok"
+Exit Sub
+
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_HD where status = 'P' order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      Set rsChartAccounts = New ADODB.Recordset
+      Set rsChartAccounts = gconDMIS.Execute("Select * from AMIS_Journal_det where Jtype = " & N2Str2Null(rsJournal_Det!jType) & " and voucherno = " & N2Str2Null(rsJournal_Det!VOUCHERNO) & " and status <> 'P'")
+      If Not rsChartAccounts.EOF And Not rsChartAccounts.BOF Then
+         gconDMIS.Execute ("update AMIS_Journal_Det set status = 'P' where id = " & rsChartAccounts!ID)
+         'MsgBox "Invalid Posted Transaction" & vbCrLf & _
+                Null2String(rsChartAccounts!acct_code) & " " & Null2String(rsChartAccounts!acct_Name) & vbCrLf & _
+                Null2String(rsJOURNAL_DET!Jtype) & "-" & Null2String(rsJOURNAL_DET!voucherno)
+      End If
+      Me.Caption = Null2String(rsJournal_Det!JNo): DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_HD where status = 'N' order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      Set rsChartAccounts = New ADODB.Recordset
+      Set rsChartAccounts = gconDMIS.Execute("Select * from AMIS_Journal_det where Jtype = " & N2Str2Null(rsJournal_Det!jType) & " and voucherno = " & N2Str2Null(rsJournal_Det!VOUCHERNO) & " and status <> 'N'")
+      If Not rsChartAccounts.EOF And Not rsChartAccounts.BOF Then
+         gconDMIS.Execute ("update AMIS_Journal_Det set status = 'N' where id = " & rsChartAccounts!ID)
+         'MsgBox "Invalid Un-Posted Transaction" & vbCrLf & _
+                Null2String(rsChartAccounts!acct_code) & " " & Null2String(rsChartAccounts!acct_Name) & vbCrLf & _
+                Null2String(rsJOURNAL_DET!Jtype) & "-" & Null2String(rsJOURNAL_DET!voucherno)
+      End If
+      Me.Caption = Null2String(rsJournal_Det!JNo): DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_HD where status = 'C' order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      Set rsChartAccounts = New ADODB.Recordset
+      Set rsChartAccounts = gconDMIS.Execute("Select * from AMIS_Journal_det where Jtype = " & N2Str2Null(rsJournal_Det!jType) & " and voucherno = " & N2Str2Null(rsJournal_Det!VOUCHERNO) & " and status <> 'C'")
+      If Not rsChartAccounts.EOF And Not rsChartAccounts.BOF Then
+         gconDMIS.Execute ("update AMIS_Journal_Det set status = 'C' where id = " & rsChartAccounts!ID)
+         'MsgBox "Invalid Cancelled Transaction" & vbCrLf & _
+                Null2String(rsChartAccounts!acct_code) & " " & Null2String(rsChartAccounts!acct_Name) & vbCrLf & _
+                Null2String(rsJOURNAL_DET!Jtype) & "-" & Null2String(rsJOURNAL_DET!voucherno)
+      End If
+      Me.Caption = Null2String(rsJournal_Det!JNo): DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+
+MsgBox "Completed!"
+End Sub
+
+Private Sub Command10_Click()
+Dim rsJournal_HDDet As ADODB.Recordset
+Dim rsCHART_ACCOUNTS As ADODB.Recordset
+
+Dim J_JDATE, J_VOUCHERNO, J_JTYPE As String
+Dim J_JNO, J_ACCT_CODE, J_ACCT_NAME As String
+Dim J_DEBIT, J_CREDIT, J_TAX, J_GROSS, J_NET As Double
+Dim J_STATUS, J_JITEMNO As String
+Dim J_ATC As String
+Dim J_RATE, J_TAXBASE As Double
+Dim ItemCount As Integer
+J_JDATE = CDate("12/31/2004")
+Set rsCHART_ACCOUNTS = New ADODB.Recordset
+Set rsCHART_ACCOUNTS = gconDMIS.Execute("Select * from AMIS_ChartAccount Where (HeaderCode <> '1' and HeaderCode <> '2' and HeaderCode <> '3') order by acctcode asc")
+If Not rsCHART_ACCOUNTS.EOF And Not rsCHART_ACCOUNTS.BOF Then
+   rsCHART_ACCOUNTS.MoveFirst: ItemCount = 0
+   gconDMIS.Execute ("delete from AMIS_Journal_Det where jtype = 'CLO' and voucherno = '000002'")
+   Do While Not rsCHART_ACCOUNTS.EOF
+      Set rsJournal_HDDet = New ADODB.Recordset
+          rsJournal_HDDet.Open "select SUM(DEBIT) AS TOTAL_DEBIT,SUM(CREDIT) AS TOTAL_CREDIT from vLEDGER where Jdate <= '" & J_JDATE & "' and Acct_Code = " & N2Str2Null(rsCHART_ACCOUNTS!AcctCode), gconDMIS
+      If Not rsJournal_HDDet.EOF And Not rsJournal_HDDet.BOF Then
+         'J_JDATE = "'" & J_JDATE & "'"
+         J_VOUCHERNO = N2Str2Null("000002")
+         J_JTYPE = N2Str2Null("CLO")
+         J_JNO = N2Str2Null("020650")
+         J_ACCT_CODE = N2Str2Null(Null2String(rsCHART_ACCOUNTS!AcctCode))
+         J_ACCT_NAME = N2Str2Null(Null2String(rsCHART_ACCOUNTS!Description))
+         If N2Str2Zero(rsJournal_HDDet!TOTAL_DEBIT) - N2Str2Zero(rsJournal_HDDet!TOTAL_CREDIT) > 0 Then
+            J_DEBIT = 0
+            J_CREDIT = Abs(N2Str2Zero(rsJournal_HDDet!TOTAL_DEBIT) - N2Str2Zero(rsJournal_HDDet!TOTAL_CREDIT))
+         Else
+            J_DEBIT = Abs(N2Str2Zero(rsJournal_HDDet!TOTAL_DEBIT) - N2Str2Zero(rsJournal_HDDet!TOTAL_CREDIT))
+            J_CREDIT = 0
+         End If
+         J_TAX = 0
+         J_GROSS = 0
+         J_NET = 0
+         J_STATUS = "'N'"
+         J_ATC = "NULL"
+         J_RATE = 0
+         J_TAXBASE = 0
+         If J_DEBIT > 0 Or J_CREDIT > 0 Then
+            ItemCount = ItemCount + 1
+            J_JITEMNO = N2Str2Null(Format(ItemCount, "0000"))
+            gconDMIS.Execute "insert into AMIS_Journal_Det " & _
+                             "(jdate,voucherno,jtype,jno,jitemno,acct_code,acct_name,debit,credit,tax,grossamt,netamt,status,USERCODE,LASTUPDATE,ATC,RATE,TAXBASE)" & _
+                             " values ('" & CDate("1/1/2005") & "', " & J_VOUCHERNO & ", " & J_JTYPE & _
+                             ", " & J_JNO & ", " & J_JITEMNO & ", " & J_ACCT_CODE & ", " & J_ACCT_NAME & ", " & J_DEBIT & _
+                             ", " & J_CREDIT & ", " & J_TAX & "," & J_GROSS & "," & J_NET & ", " & J_STATUS & ",'" & LOGCODE & "','" & LOGDATE & "'," & J_ATC & "," & J_RATE & "," & J_TAXBASE & ")"
+         End If
+      End If
+      Me.Caption = Null2String(rsCHART_ACCOUNTS!Description): DoEvents
+      rsCHART_ACCOUNTS.MoveNext
+   Loop
+End If
+Set rsCHART_ACCOUNTS = Nothing
+Set rsJournal_HDDet = Nothing
+End Sub
+
+Private Sub Command11_Click()
+Dim rsJournal_Det As ADODB.Recordset
+Dim rsChartAccount As ADODB.Recordset
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select ID,Voucherno,jtype,acct_code,acct_name,Jno,status from AMIS_Journal_Det Order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   MsgBox "Poon"
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      Set rsChartAccount = New ADODB.Recordset
+      Set rsChartAccount = gconDMIS.Execute("Select jno,status from AMIS_Journal_HD Where status <> " & N2Str2Null(rsJournal_Det!Status) & " and JNo = " & N2Str2Null(rsJournal_Det!JNo))
+      If Not rsChartAccount.EOF And Not rsChartAccount.BOF Then
+         If Null2String(rsChartAccount!Status) = "P" Then
+            gconDMIS.Execute ("update AMIS_Journal_Det SET STATUS = 'P' WHERE JNO = " & N2Str2Null(rsJournal_Det!JNo))
+         Else
+            MsgBox "HEADER STATUS = (" & Null2String(rsChartAccount!Status) & ")" & vbCrLf & _
+                "DETAIL STATUS = (" & Null2String(rsJournal_Det!Status) & ")" & vbCrLf & _
+                Null2String(rsJournal_Det!jType) & "-" & _
+                Null2String(rsJournal_Det!VOUCHERNO) & vbCrLf & _
+                Null2String(rsJournal_Det!acct_Name)
+         End If
+      End If
+      Me.Caption = "[" & rsJournal_Det!ID & "] " & Null2String(rsJournal_Det!VOUCHERNO)
+      DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+   MsgBox "Tapos"
+End If
+End Sub
+
+Private Sub Command13_Click()
+Dim rsAR_OPENING As ADODB.Recordset
+Set rsAR_OPENING = New ADODB.Recordset
+Dim J_JNO As String
+Set rsAR_OPENING = gconDMIS.Execute("Select * from AR_OPENING Order by VoucherNo asc")
+If Not rsAR_OPENING.EOF And Not rsAR_OPENING.BOF Then
+   rsAR_OPENING.MoveFirst
+   Do While Not rsAR_OPENING.EOF
+        Set rsJournal_HDDup = New ADODB.Recordset
+        Set rsJournal_HDDup = gconDMIS.Execute("select jno from AMIS_Journal_HD order by jno desc")
+        If Not rsJournal_HDDup.EOF And Not rsJournal_HDDup.BOF Then
+            J_JNO = "'" & Format(N2Str2Zero(rsJournal_HDDup!JNo) + 1, "000000") & "'"
+        Else
+            J_JNO = "'000001'"
+        End If
+      gconDMIS.Execute ("Insert into AMIS_Journal_HD (JNO,JDate,VoucherNo,Jtype,CustomerCode,CustomerName,InvoiceType,InvoiceNo,InvoiceDate,InvoiceAmt)" & _
+                       " values (" & J_JNO & "," & N2Str2Null(rsAR_OPENING!Jdate) & "," & N2Str2Null(Format(rsAR_OPENING!VOUCHERNO, "000000")) & "," & N2Str2Null(rsAR_OPENING!jType) & _
+                       ",NULL," & N2Str2Null(rsAR_OPENING!CustomerName) & "," & N2Str2Null(rsAR_OPENING!InvoiceType) & "," & N2Str2Null(rsAR_OPENING!InvoiceNo) & "," & N2Str2Null(rsAR_OPENING!InvoiceDate) & "," & N2Str2Null(rsAR_OPENING!InvoiceAmt) & ")")
+      Me.Caption = rsAR_OPENING!VOUCHERNO
+      rsAR_OPENING.MoveNext
+      DoEvents
+   Loop
+End If
+MsgBox "Tapos"
+End Sub
+
+Private Sub Command3_Click()
+Unload Me
+End Sub
+
+Private Sub Command4_Click()
+Dim rsJournal_HD As ADODB.Recordset
+Dim rsCUSTOMER As ADODB.Recordset
+Set rsJournal_HD = New ADODB.Recordset
+Set rsJournal_HD = gconDMIS.Execute("Select * from AMIS_Journal_HD Order by id asc")
+If Not rsJournal_HD.EOF And Not rsJournal_HD.BOF Then
+   rsJournal_HD.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_HD.EOF
+      Set rsCUSTOMER = New ADODB.Recordset
+      Set rsCUSTOMER = gconDMIS.Execute("select * from AMIS_Customer where CustCode = " & N2Str2Null(rsJournal_HD!CustomerCode))
+      If rsCUSTOMER.EOF And rsCUSTOMER.BOF Then
+         MsgBox Null2String(rsJournal_HD!CustomerCode) & " is Invalid!"
+      End If
+      rsJournal_HD.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+MsgBox "Completed!"
+End Sub
+
+Private Sub Command5_Click()
+Dim rsJournal_HD As ADODB.Recordset
+Dim rsJournal_Det As ADODB.Recordset
+Set rsJournal_HD = New ADODB.Recordset
+Set rsJournal_HD = gconDMIS.Execute("Select * from AMIS_Journal_HD where jtype <> 'OPB' Order by id asc")
+If Not rsJournal_HD.EOF And Not rsJournal_HD.BOF Then
+   rsJournal_HD.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_HD.EOF
+      Set rsJournal_Det = New ADODB.Recordset
+      Set rsJournal_Det = gconDMIS.Execute("Select SUM(DEBIT) AS TotalDebit,SUM(CREDIT) AS TotalCredit from AMIS_Journal_Det Where JType = " & N2Str2Null(rsJournal_HD!jType) & " And VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO))
+      If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+         If Round(N2Str2Zero(rsJournal_Det!TotalDebit), 2) <> Round(N2Str2Zero(rsJournal_Det!Totalcredit), 2) Then
+            gconDMIS.Execute "update AMIS_Journal_HD set " & _
+                             " Debit = " & N2Str2Zero(rsJournal_Det!TotalDebit) & "," & _
+                             " Credit = " & N2Str2Zero(rsJournal_Det!Totalcredit) & "," & _
+                             " Status = 'N'" & _
+                             " Where JType = " & N2Str2Null(rsJournal_HD!jType) & " AND VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO)
+            MsgBox Null2String(rsJournal_HD!jType) & "-" & Null2String(rsJournal_HD!VOUCHERNO) & " is not Balance."
+         Else
+            gconDMIS.Execute "update AMIS_Journal_HD set " & _
+                             "Debit = " & N2Str2Zero(rsJournal_Det!TotalDebit) & "," & _
+                             "Credit = " & N2Str2Zero(rsJournal_Det!Totalcredit) & _
+                             " Where JType = " & N2Str2Null(rsJournal_HD!jType) & " AND VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO)
+         End If
+      Else
+         MsgBox Null2String(rsJournal_HD!jType) & "-" & Null2String(rsJournal_HD!VOUCHERNO) & " has no Detail."
+      End If
+      rsJournal_HD.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+MsgBox "Completed!"
+End Sub
+
+Sub CheckAccountsNotInTitleCode()
+Dim rsChartOfAccounts As ADODB.Recordset
+Dim rsTitleCode As ADODB.Recordset
+
+Set rsChartOfAccounts = New ADODB.Recordset
+Set rsChartOfAccounts = gconDMIS.Execute("Select * from AMIS_ChartAccount Order by AcctCode asc")
+If Not rsChartOfAccounts.EOF And Not rsChartOfAccounts.BOF Then
+   rsChartOfAccounts.MoveFirst
+   Do While Not rsChartOfAccounts.EOF
+      Set rsTitleCode = New ADODB.Recordset
+      Set rsTitleCode = gconDMIS.Execute("Select * from AMIS_TitleCode Where Code = " & N2Str2Null(rsChartOfAccounts!Titles))
+      If rsTitleCode.EOF And rsTitleCode.BOF Then
+         MsgBox "Account Code : " & rsChartOfAccounts!AcctCode & vbCrLf & _
+                 "Account Desc : " & rsChartOfAccounts!Description & vbCrLf & _
+                " Is not in Account Sub-Totals", vbCritical, "Invalid Account Found!"
+      End If
+      rsChartOfAccounts.MoveNext
+   Loop
+End If
+MsgBox "Done"
+End Sub
+
+Private Sub Command6_Click()
+Dim rsSTKSTAT As ADODB.Recordset
+Dim rsRANKFLE As ADODB.Recordset
+Set rsSTKSTAT = New ADODB.Recordset
+Set rsSTKSTAT = gconDMIS.Execute("Select * from STKSTAT where date_gen = '10/30/2004'")
+If Not rsSTKSTAT.EOF And Not rsSTKSTAT.BOF Then
+   rsSTKSTAT.MoveFirst
+   Do While Not rsSTKSTAT.EOF
+      rsSTKSTAT.MoveNext
+   Loop
+End If
+End Sub
+
+Private Sub Command7_Click()
+Dim rsSMIS_CUSTOMER As ADODB.Recordset
+Dim rsAMIS_CUSTOMER As ADODB.Recordset
+Dim rsCSMIOS_CUSTOMER As ADODB.Recordset
+
+Set rsCSMIOS_CUSTOMER = New ADODB.Recordset
+Set rsCSMIOS_CUSTOMER = gconDMIS.Execute("Select * from CUSMAS order by CUSCDE ASC")
+If Not rsCSMIOS_CUSTOMER.EOF And Not rsCSMIOS_CUSTOMER.BOF Then
+   rsCSMIOS_CUSTOMER.MoveFirst
+   Do While Not rsCSMIOS_CUSTOMER.EOF And Not rsCSMIOS_CUSTOMER.BOF
+      Set rsSMIS_CUSTOMER = New ADODB.Recordset
+      Set rsSMIS_CUSTOMER = gconDMIS.Execute("Select * from AMIS_Customer Where LastName = " & N2Str2Null(rsCSMIOS_CUSTOMER!lastname) & " and FirstName = " & N2Str2Null(rsCSMIOS_CUSTOMER!Firstname))
+      If Not rsSMIS_CUSTOMER.EOF And Not rsSMIS_CUSTOMER.BOF Then
+         gconDMIS.Execute ("Update CUSVEH Set CUSCDE = " & N2Str2Null(rsSMIS_CUSTOMER!CUSCDE))
+      End If
+      rsCSMIOS_CUSTOMER.MoveNext
+   Loop
+End If
+End Sub
+
+Private Sub Command8_Click()
+Screen.MousePointer = 11
+Dim rsMYOBJournals As ADODB.Recordset
+Set rsMYOBJournals = New ADODB.Recordset
+Set rsMYOBJournals = gconDMIS.Execute("Select * from MYOBJournal order by id asc")
+If Not rsMYOBJournals.EOF And Not rsMYOBJournals.BOF Then
+   rsMYOBJournals.MoveFirst
+   MsgBox "Poon"
+   Do While Not rsMYOBJournals.EOF
+      gconDMIS.Execute ("Update MYOBJournal Set [Memo] = " & N2Str2Null(rsMYOBJournals!Memo) & " Where id = " & rsMYOBJournals!ID)
+      rsMYOBJournals.MoveNext
+   Loop
+   MsgBox "Tapos"
+End If
+Screen.MousePointer = 0
+End Sub
+
+Private Sub Command9_Click()
+Dim rsJournal_Det As ADODB.Recordset
+Dim rsChartAccount As ADODB.Recordset
+MsgBox "Poon"
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select ID,Acct_Code,Acct_Name from AMIS_Journal_Det Order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      Set rsChartAccount = New ADODB.Recordset
+      Set rsChartAccount = gconDMIS.Execute("Select * from AMIS_ChartAccount Where AcctCode = " & N2Str2Null(rsJournal_Det!Acct_Code))
+      If rsChartAccount.EOF And rsChartAccount.BOF Then
+         MsgBox (Null2String(rsJournal_Det!Acct_Code) & vbCrLf & _
+                Null2String(rsJournal_Det!acct_Name))
+         If MsgBox("Delete this Account?", vbQuestion + vbYesNo, "Delete..") = vbYes Then
+            gconDMIS.Execute ("Delete from AMIS_Journal_Det where id = " & rsJournal_Det!ID)
+         End If
+      End If
+      Me.Caption = "[" & rsJournal_Det!ID & "] " & Null2String(rsJournal_Det!Acct_Code)
+      DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+
+Set rsJournal_Det = New ADODB.Recordset
+Set rsJournal_Det = gconDMIS.Execute("Select * from AMIS_Journal_Det Order by id asc")
+If Not rsJournal_Det.EOF And Not rsJournal_Det.BOF Then
+   rsJournal_Det.MoveFirst
+   Screen.MousePointer = 11
+   Do While Not rsJournal_Det.EOF
+      Set rsChartAccount = New ADODB.Recordset
+      Set rsChartAccount = gconDMIS.Execute("Select * from AMIS_Journal_HD Where Jno = " & N2Str2Null(rsJournal_Det!JNo))
+      If rsChartAccount.EOF And rsChartAccount.BOF Then
+         MsgBox (Null2String(rsJournal_Det!jType) & vbCrLf & _
+                Null2String(rsJournal_Det!VOUCHERNO))
+         If MsgBox("Delete this Entry?", vbQuestion + vbYesNo, "Delete..") = vbYes Then
+            gconDMIS.Execute ("Delete from AMIS_Journal_Det where id = " & rsJournal_Det!ID)
+         End If
+      End If
+      Me.Caption = "[" & rsJournal_Det!ID & "] " & Null2String(rsJournal_Det!Acct_Code)
+      DoEvents
+      rsJournal_Det.MoveNext
+   Loop
+   Screen.MousePointer = 0
+End If
+
+MsgBox "Tapos"
+End Sub
+
+
+Private Sub cmdRefreshJno_Click()
+Dim rsdistinctJTYPE As ADODB.Recordset
+
+Dim rsJournal_HD As ADODB.Recordset
+Dim KIM As Long
+Screen.MousePointer = 11
+Set rsdistinctJTYPE = New ADODB.Recordset
+Set rsdistinctJTYPE = gconDMIS.Execute("Select Distinct JTYPE FROM AMIS_Journal_HD WHERE JTYPE = 'COB' OR JTYPE = 'VPJ' Order by Jtype asc")
+If Not rsdistinctJTYPE.EOF And Not rsdistinctJTYPE.BOF Then
+   rsdistinctJTYPE.MoveFirst
+   Do While Not rsdistinctJTYPE.EOF
+        Set rsJournal_HD = New ADODB.Recordset
+        Set rsJournal_HD = gconDMIS.Execute("Select * from AMIS_Journal_HD Where JType = '" & rsdistinctJTYPE!jType & "' Order by Jno asc")
+        If Not rsJournal_HD.EOF And Not rsJournal_HD.BOF Then
+            rsJournal_HD.MoveFirst: KIM = 0
+            Do While Not rsJournal_HD.EOF
+               KIM = KIM + 1
+               gconDMIS.Execute ("Update AMIS_Journal_HD Set VoucherNo = '" & Format(KIM, "000000") & "' where Jno = " & N2Str2Null(rsJournal_HD!JNo))
+               gconDMIS.Execute ("Update AMIS_Journal_Det Set VoucherNo = '" & Format(KIM, "000000") & "' where Jno = " & N2Str2Null(rsJournal_HD!JNo))
+               If rsdistinctJTYPE!jType = "CRJ" Then
+                  gconDMIS.Execute ("Update AMIS_CRJ_Detail Set VoucherNo = '" & Format(KIM, "000000") & "' where VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO))
+               End If
+               If rsdistinctJTYPE!jType = "CDJ" Then
+                  gconDMIS.Execute ("Update AMIS_CV_Detail Set VoucherNo = '" & Format(KIM, "000000") & "' where VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO))
+               End If
+               If rsdistinctJTYPE!jType = "APJ" Then
+                  gconDMIS.Execute ("Update AMIS_PV_Detail Set VoucherNo = '" & Format(KIM, "000000") & "' where VoucherNo = " & N2Str2Null(rsJournal_HD!VOUCHERNO))
+               End If
+               gconDMIS.Execute ("Update AMIS_Journal_Det Set VoucherNo = '" & Format(KIM, "000000") & "' where Jno = " & N2Str2Null(rsJournal_HD!JNo))
+               Me.Caption = rsdistinctJTYPE!jType & " " & Format(KIM, "000000") & " Jno = " & rsJournal_HD!JNo: DoEvents
+               rsJournal_HD.MoveNext
+            Loop
+        End If
+      rsdistinctJTYPE.MoveNext
+   Loop
+End If
+Screen.MousePointer = 0
+MsgBox "tapos"
+End Sub
+
+Private Sub cmdShowErrorQuery_Click()
+frmAMISErrorQuery.Show
+End Sub
+
+Private Sub Command1_Click()
+Dim rsChartAccount As ADODB.Recordset
+Dim rsTitleCode As ADODB.Recordset
+Dim AccountTitles As String
+
+Set rsChartAccount = New ADODB.Recordset
+Set rsChartAccount = gconDMIS.Execute("Select * from AMIS_ChartAccount Order by AcctCode asc")
+If Not rsChartAccount.EOF And Not rsChartAccount.BOF Then
+   rsChartAccount.MoveFirst
+   Do While Not rsChartAccount.EOF
+      AccountTitles = Left(rsChartAccount!AcctCode, 2) & Mid(rsChartAccount!AcctCode, 4, 2)
+      Set rsTitleCode = New ADODB.Recordset
+      Set rsTitleCode = gconDMIS.Execute("Select * from AMIS_TitleCode where Code = '" & AccountTitles & "'")
+      If rsTitleCode.EOF And rsTitleCode.BOF Then
+         MsgBox "Invalid Title Code for Account Code : " & rsChartAccount!AcctCode
+      End If
+      rsChartAccount.MoveNext
+   Loop
+End If
+MsgBox "Done"
+End Sub

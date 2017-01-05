@@ -1,0 +1,6 @@
+Line 129: Class TabDlg.SSTab of control SearchTab was not a loaded control class.
+Line 234: Class MSComctlLib.ListView of control lstIgnitionKey was not a loaded control class.
+Line 355: Class MSComctlLib.ListView of control lstProdNo was not a loaded control class.
+Line 477: Class MSComctlLib.ListView of control lstInvoiceNo was not a loaded control class.
+Line 599: Class MSComctlLib.ListView of control lstCustomer was not a loaded control class.
+Line 749: Class MSComctlLib.ListView of control lstDate was not a loaded control class.

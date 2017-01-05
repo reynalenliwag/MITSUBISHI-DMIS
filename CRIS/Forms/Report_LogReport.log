@@ -1,0 +1,3 @@
+Line 56: Class Crystal.CrystalReport of control rptLogs was not a loaded control class.
+Line 108: Class MSComCtl2.DTPicker of control dtpToDateLog was not a loaded control class.
+Line 132: Class MSComCtl2.DTPicker of control dtpFromDateLog was not a loaded control class.

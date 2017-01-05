@@ -1,0 +1,104 @@
+Line 76: Class wizButton.cmd of control cmd1 was not a loaded control class.
+Line 269: Class MSComctlLib.ListView of control lsvTran was not a loaded control class.
+Line 315: Class wizButton.cmd of control cmd2 was not a loaded control class.
+Line 546: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption1 was not a loaded control class.
+Line 989: Class MSFlexGridLib.MSFlexGrid of control grdCheckCardTransactions was not a loaded control class.
+Line 1018: Class MSComCtl2.DTPicker of control dtpDatDeposit was not a loaded control class.
+Line 1240: Class Crystal.CrystalReport of control rptBankDepo was not a loaded control class.
+Line 1257: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption2 was not a loaded control class.
+Line 1310: Class MSComctlLib.ListView of control lstBANKDEPO was not a loaded control class.
+Line 2049: Class MSFlexGridLib.MSFlexGrid of control grdBankDepo was not a loaded control class.
+Line 82: The property name _ExtentX in cmd1 is invalid.
+Line 83: The property name _ExtentY in cmd1 is invalid.
+Line 84: The property name TX in cmd1 is invalid.
+Line 85: The property name ENAB in cmd1 is invalid.
+Line 95: The property name FOCUSR in cmd1 is invalid.
+Line 96: The property name MPTR in cmd1 is invalid.
+Line 97: The property name MICON in cmd1 is invalid.
+Line 275: The property name _ExtentX in lsvTran is invalid.
+Line 276: The property name _ExtentY in lsvTran is invalid.
+Line 277: The property name View in lsvTran is invalid.
+Line 278: The property name LabelEdit in lsvTran is invalid.
+Line 279: The property name LabelWrap in lsvTran is invalid.
+Line 280: The property name HideSelection in lsvTran is invalid.
+Line 281: The property name Checkboxes in lsvTran is invalid.
+Line 282: The property name FullRowSelect in lsvTran is invalid.
+Line 283: The property name GridLines in lsvTran is invalid.
+Line 284: The property name _Version in lsvTran is invalid.
+Line 289: The property name NumItems in lsvTran is invalid.
+Line 293: The property name ColumnHeader(1) in lsvTran is invalid.
+Line 298: The property name ColumnHeader(2) in lsvTran is invalid.
+Line 303: The property name ColumnHeader(3) in lsvTran is invalid.
+Line 309: The property name ColumnHeader(4) in lsvTran is invalid.
+Line 313: The property name ColumnHeader(5) in lsvTran is invalid.
+Line 321: The property name _ExtentX in cmd2 is invalid.
+Line 322: The property name _ExtentY in cmd2 is invalid.
+Line 323: The property name TX in cmd2 is invalid.
+Line 324: The property name ENAB in cmd2 is invalid.
+Line 334: The property name FOCUSR in cmd2 is invalid.
+Line 335: The property name MPTR in cmd2 is invalid.
+Line 336: The property name MICON in cmd2 is invalid.
+Line 552: The property name _Version in ShortcutCaption1 is invalid.
+Line 553: The property name _ExtentX in ShortcutCaption1 is invalid.
+Line 554: The property name _ExtentY in ShortcutCaption1 is invalid.
+Line 555: The property name _StockProps in ShortcutCaption1 is invalid.
+Line 565: The property name GradientColorLight in ShortcutCaption1 is invalid.
+Line 566: The property name GradientColorDark in ShortcutCaption1 is invalid.
+Line 995: The property name _ExtentX in grdCheckCardTransactions is invalid.
+Line 996: The property name _ExtentY in grdCheckCardTransactions is invalid.
+Line 997: The property name _Version in grdCheckCardTransactions is invalid.
+Line 998: The property name Cols in grdCheckCardTransactions is invalid.
+Line 999: The property name FixedCols in grdCheckCardTransactions is invalid.
+Line 1000: The property name BackColorFixed in grdCheckCardTransactions is invalid.
+Line 1001: The property name BackColorSel in grdCheckCardTransactions is invalid.
+Line 1002: The property name BackColorBkg in grdCheckCardTransactions is invalid.
+Line 1006: The property name FormatString in grdCheckCardTransactions is invalid.
+Line 989: Property MouseIcon in grdCheckCardTransactions could not be set.
+Line 1024: The property name _ExtentX in dtpDatDeposit is invalid.
+Line 1025: The property name _ExtentY in dtpDatDeposit is invalid.
+Line 1026: The property name _Version in dtpDatDeposit is invalid.
+Line 1037: The property name Format in dtpDatDeposit is invalid.
+Line 1038: The property name CurrentDate in dtpDatDeposit is invalid.
+Line 1243: The property name _ExtentX in rptBankDepo is invalid.
+Line 1244: The property name _ExtentY in rptBankDepo is invalid.
+Line 1245: The property name _Version in rptBankDepo is invalid.
+Line 1246: The property name WindowTitle in rptBankDepo is invalid.
+Line 1247: The property name WindowControlBox in rptBankDepo is invalid.
+Line 1248: The property name WindowMaxButton in rptBankDepo is invalid.
+Line 1249: The property name WindowMinButton in rptBankDepo is invalid.
+Line 1250: The property name WindowState in rptBankDepo is invalid.
+Line 1251: The property name PrintFileLinesPerPage in rptBankDepo is invalid.
+Line 1252: The property name WindowShowCloseBtn in rptBankDepo is invalid.
+Line 1253: The property name WindowShowSearchBtn in rptBankDepo is invalid.
+Line 1254: The property name WindowShowPrintSetupBtn in rptBankDepo is invalid.
+Line 1255: The property name WindowShowRefreshBtn in rptBankDepo is invalid.
+Line 1263: The property name _Version in ShortcutCaption2 is invalid.
+Line 1264: The property name _ExtentX in ShortcutCaption2 is invalid.
+Line 1265: The property name _ExtentY in ShortcutCaption2 is invalid.
+Line 1266: The property name _StockProps in ShortcutCaption2 is invalid.
+Line 1267: The property name Caption in ShortcutCaption2 is invalid.
+Line 1277: The property name VisualTheme in ShortcutCaption2 is invalid.
+Line 1316: The property name _ExtentX in lstBANKDEPO is invalid.
+Line 1317: The property name _ExtentY in lstBANKDEPO is invalid.
+Line 1318: The property name View in lstBANKDEPO is invalid.
+Line 1319: The property name LabelEdit in lstBANKDEPO is invalid.
+Line 1320: The property name Sorted in lstBANKDEPO is invalid.
+Line 1321: The property name LabelWrap in lstBANKDEPO is invalid.
+Line 1322: The property name HideSelection in lstBANKDEPO is invalid.
+Line 1323: The property name AllowReorder in lstBANKDEPO is invalid.
+Line 1324: The property name FullRowSelect in lstBANKDEPO is invalid.
+Line 1325: The property name GridLines in lstBANKDEPO is invalid.
+Line 1326: The property name _Version in lstBANKDEPO is invalid.
+Line 1341: The property name NumItems in lstBANKDEPO is invalid.
+Line 1345: The property name ColumnHeader(1) in lstBANKDEPO is invalid.
+Line 1350: The property name ColumnHeader(2) in lstBANKDEPO is invalid.
+Line 1310: Property MouseIcon in lstBANKDEPO could not be set.
+Line 2055: The property name _ExtentX in grdBankDepo is invalid.
+Line 2056: The property name _ExtentY in grdBankDepo is invalid.
+Line 2057: The property name _Version in grdBankDepo is invalid.
+Line 2058: The property name Cols in grdBankDepo is invalid.
+Line 2059: The property name FixedCols in grdBankDepo is invalid.
+Line 2060: The property name BackColorSel in grdBankDepo is invalid.
+Line 2061: The property name BackColorBkg in grdBankDepo is invalid.
+Line 2064: The property name FormatString in grdBankDepo is invalid.
+Line 2049: Property MouseIcon in grdBankDepo could not be set.

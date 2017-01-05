@@ -1,0 +1,15 @@
+modRAMSMain = 54, 54, 633, 486, 
+frmFiles_Modules = 0, 0, 0, 0, C, 66, 87, 809, 575, C
+modAudit = 27, 27, 606, 459, C
+frmInquiry_Audit = 44, 58, 719, 491, , 88, 116, 831, 604, C
+frmfiles_Users = 154, 154, 592, 572, C, 110, 145, 853, 633, C
+frmFiles_ServerSetting = 66, 87, 683, 549, C, 132, 174, 875, 662, C
+modPopUps = 44, 44, 564, 462, C
+frmImportModules = 0, 0, 633, 433, , 154, 203, 897, 691, C
+frmFiles_CopySettings = 132, 174, 671, 630, , 0, 0, 743, 488, C
+frmReportUserAcess = 110, 110, 548, 528, C, 22, 29, 765, 517, C
+frmReportAuditReport = 110, 66, 954, 520, Z, 44, 58, 787, 546, C
+frmSecurity = 135, 135, 714, 567, C, 108, 108, 687, 540, C
+frmMain = 110, 145, 649, 601, , 44, 58, 787, 546, C
+frmFiles_Profile = 81, 81, 660, 513, C, 132, 174, 875, 662, C
+frmFiles_AcessManagement = 110, 110, 696, 433, , 176, 176, 751, 594, C

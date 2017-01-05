@@ -1,0 +1,27 @@
+Line 52: Class MSComCtl2.DTPicker of control datepFrom was not a loaded control class.
+Line 73: Class MSComCtl2.DTPicker of control datepTo was not a loaded control class.
+Line 190: Class Crystal.CrystalReport of control rptInvent was not a loaded control class.
+Line 58: The property name _ExtentX in datepFrom is invalid.
+Line 59: The property name _ExtentY in datepFrom is invalid.
+Line 60: The property name _Version in datepFrom is invalid.
+Line 70: The property name Format in datepFrom is invalid.
+Line 71: The property name CurrentDate in datepFrom is invalid.
+Line 79: The property name _ExtentX in datepTo is invalid.
+Line 80: The property name _ExtentY in datepTo is invalid.
+Line 81: The property name _Version in datepTo is invalid.
+Line 91: The property name Format in datepTo is invalid.
+Line 92: The property name CurrentDate in datepTo is invalid.
+Line 193: The property name _ExtentX in rptInvent is invalid.
+Line 194: The property name _ExtentY in rptInvent is invalid.
+Line 195: The property name _Version in rptInvent is invalid.
+Line 196: The property name WindowTitle in rptInvent is invalid.
+Line 197: The property name WindowControlBox in rptInvent is invalid.
+Line 198: The property name WindowMaxButton in rptInvent is invalid.
+Line 199: The property name WindowMinButton in rptInvent is invalid.
+Line 200: The property name WindowState in rptInvent is invalid.
+Line 201: The property name PrintFileLinesPerPage in rptInvent is invalid.
+Line 202: The property name WindowAllowDrillDown in rptInvent is invalid.
+Line 203: The property name WindowShowCloseBtn in rptInvent is invalid.
+Line 204: The property name WindowShowSearchBtn in rptInvent is invalid.
+Line 205: The property name WindowShowPrintSetupBtn in rptInvent is invalid.
+Line 206: The property name WindowShowRefreshBtn in rptInvent is invalid.

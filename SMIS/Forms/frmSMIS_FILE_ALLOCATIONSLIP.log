@@ -1,0 +1,5 @@
+Line 124: Class MSComctlLib.ListView of control lstPO was not a loaded control class.
+Line 164: Class Crystal.CrystalReport of control rptAllocation was not a loaded control class.
+Line 231: Class MSComCtl2.DTPicker of control txt_RecieveDate was not a loaded control class.
+Line 305: Class MSComCtl2.DTPicker of control txt_ProposedDate was not a loaded control class.
+Line 326: Class MSComCtl2.DTPicker of control txt_ApprovedDate was not a loaded control class.

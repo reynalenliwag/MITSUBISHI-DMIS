@@ -1,0 +1,8 @@
+Line 102: Class wizButton.cmd of control CmdView was not a loaded control class.
+Line 125: Class wizButton.cmd of control cmdPrint was not a loaded control class.
+Line 181: Class MSComCtl2.DTPicker of control DTdate was not a loaded control class.
+Line 257: Class wizButton.cmd of control cmdClose was not a loaded control class.
+Line 280: Class wizButton.cmd of control cmdforApp was not a loaded control class.
+Line 339: Class MSComctlLib.ListView of control listforapp was not a loaded control class.
+Line 423: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption1 was not a loaded control class.
+Line 463: Class MSComctlLib.ListView of control ListTestDrive was not a loaded control class.

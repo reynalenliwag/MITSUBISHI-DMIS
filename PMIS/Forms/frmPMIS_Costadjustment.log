@@ -1,0 +1,16 @@
+Line 227: Class MSComctlLib.ListView of control lstADJ_HD was not a loaded control class.
+Line 233: The property name _ExtentX in lstADJ_HD is invalid.
+Line 234: The property name _ExtentY in lstADJ_HD is invalid.
+Line 235: The property name View in lstADJ_HD is invalid.
+Line 236: The property name LabelEdit in lstADJ_HD is invalid.
+Line 237: The property name Sorted in lstADJ_HD is invalid.
+Line 238: The property name LabelWrap in lstADJ_HD is invalid.
+Line 239: The property name HideSelection in lstADJ_HD is invalid.
+Line 240: The property name AllowReorder in lstADJ_HD is invalid.
+Line 241: The property name FullRowSelect in lstADJ_HD is invalid.
+Line 242: The property name GridLines in lstADJ_HD is invalid.
+Line 243: The property name _Version in lstADJ_HD is invalid.
+Line 259: The property name NumItems in lstADJ_HD is invalid.
+Line 263: The property name ColumnHeader(1) in lstADJ_HD is invalid.
+Line 268: The property name ColumnHeader(2) in lstADJ_HD is invalid.
+Line 227: Property MouseIcon in lstADJ_HD could not be set.

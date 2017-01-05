@@ -1,0 +1,28 @@
+Line 156: Class MSComCtl2.DTPicker of control dtFrom was not a loaded control class.
+Line 208: Class XtremeReportControl.ReportControl of control rptLEDGER was not a loaded control class.
+Line 294: Class XtremeReportControl.ReportControl of control rptENTITY was not a loaded control class.
+Line 339: Class MSComCtl2.DTPicker of control dtTO was not a loaded control class.
+Line 414: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption1 was not a loaded control class.
+Line 162: The property name _ExtentX in dtFrom is invalid.
+Line 163: The property name _ExtentY in dtFrom is invalid.
+Line 164: The property name _Version in dtFrom is invalid.
+Line 174: The property name Format in dtFrom is invalid.
+Line 175: The property name CurrentDate in dtFrom is invalid.
+Line 214: The property name _Version in rptLEDGER is invalid.
+Line 215: The property name _ExtentX in rptLEDGER is invalid.
+Line 216: The property name _ExtentY in rptLEDGER is invalid.
+Line 217: The property name _StockProps in rptLEDGER is invalid.
+Line 300: The property name _Version in rptENTITY is invalid.
+Line 301: The property name _ExtentX in rptENTITY is invalid.
+Line 302: The property name _ExtentY in rptENTITY is invalid.
+Line 303: The property name _StockProps in rptENTITY is invalid.
+Line 345: The property name _ExtentX in dtTO is invalid.
+Line 346: The property name _ExtentY in dtTO is invalid.
+Line 347: The property name _Version in dtTO is invalid.
+Line 357: The property name Format in dtTO is invalid.
+Line 358: The property name CurrentDate in dtTO is invalid.
+Line 420: The property name _Version in ShortcutCaption1 is invalid.
+Line 421: The property name _ExtentX in ShortcutCaption1 is invalid.
+Line 422: The property name _ExtentY in ShortcutCaption1 is invalid.
+Line 423: The property name _StockProps in ShortcutCaption1 is invalid.
+Line 433: The property name VisualTheme in ShortcutCaption1 is invalid.

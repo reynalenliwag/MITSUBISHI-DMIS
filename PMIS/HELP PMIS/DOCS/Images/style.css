@@ -1,0 +1,25 @@
+﻿   .clean-yellow
+        {
+            border: solid 1px #DEDEDE;
+            background: #FFFFCC;
+            color: #222222;
+            padding: 4px;
+            text-align: left;
+        }
+        body, td
+        {
+            font-family: "Lucida Grande" , "Lucida Sans Unicode" , Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+        .clean-gray
+        {
+            border: solid 1px #DEDEDE;
+            background: #EFEFEF;
+            color: #222222;
+            padding: 4px;
+            font-weight: bolder;
+            text-align: center;
+        }

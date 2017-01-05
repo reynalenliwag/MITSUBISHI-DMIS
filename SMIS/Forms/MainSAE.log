@@ -1,0 +1,11 @@
+Line 55: Class Crystal.CrystalReport of control rptMain was not a loaded control class.
+Line 63: Class MSComctlLib.StatusBar of control StatusBar1 was not a loaded control class.
+Line 145: Class XtremeSuiteControls.TabControl of control TabControl was not a loaded control class.
+Line 201: Class XtremeReportControl.ReportControl of control lstLoanApplication was not a loaded control class.
+Line 215: Class XtremeReportControl.ReportControl of control lstActivity was not a loaded control class.
+Line 229: Class XtremeReportControl.ReportControl of control lstReminders was not a loaded control class.
+Line 242: Class XtremeReportControl.ReportControl of control lstProspects was not a loaded control class.
+Line 254: Class XtremeReportControl.ReportControl of control lstVehicles was not a loaded control class.
+Line 267: Class XtremeReportControl.ReportControl of control lstSalesOrder was not a loaded control class.
+Line 994: Class XtremeShortcutBar.ShortcutCaption of control captionInformation was not a loaded control class.
+Line 1854: Class XtremeShortcutBar.ShortcutCaption of control CapInfo was not a loaded control class.

@@ -1,0 +1,24 @@
+Line 135: Class Crystal.CrystalReport of control rptReleased was not a loaded control class.
+Line 226: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption1 was not a loaded control class.
+Line 138: The property name _ExtentX in rptReleased is invalid.
+Line 139: The property name _ExtentY in rptReleased is invalid.
+Line 140: The property name _Version in rptReleased is invalid.
+Line 141: The property name WindowTitle in rptReleased is invalid.
+Line 142: The property name WindowControlBox in rptReleased is invalid.
+Line 143: The property name WindowMaxButton in rptReleased is invalid.
+Line 144: The property name WindowMinButton in rptReleased is invalid.
+Line 145: The property name WindowState in rptReleased is invalid.
+Line 146: The property name PrintFileLinesPerPage in rptReleased is invalid.
+Line 147: The property name WindowShowGroupTree in rptReleased is invalid.
+Line 148: The property name WindowAllowDrillDown in rptReleased is invalid.
+Line 149: The property name WindowShowCloseBtn in rptReleased is invalid.
+Line 150: The property name WindowShowSearchBtn in rptReleased is invalid.
+Line 151: The property name WindowShowPrintSetupBtn in rptReleased is invalid.
+Line 152: The property name WindowShowRefreshBtn in rptReleased is invalid.
+Line 232: The property name _Version in ShortcutCaption1 is invalid.
+Line 233: The property name _ExtentX in ShortcutCaption1 is invalid.
+Line 234: The property name _ExtentY in ShortcutCaption1 is invalid.
+Line 235: The property name _StockProps in ShortcutCaption1 is invalid.
+Line 236: The property name Caption in ShortcutCaption1 is invalid.
+Line 247: The property name SubItemCaption in ShortcutCaption1 is invalid.
+Line 248: The property name Alignment in ShortcutCaption1 is invalid.

@@ -1,0 +1,5 @@
+Line 28: Class Crystal.CrystalReport of control ProspectSheet was not a loaded control class.
+Line 116: Class wizButton.cmd of control CmdCost was not a loaded control class.
+Line 139: Class wizButton.cmd of control CmdCostCancel was not a loaded control class.
+Line 220: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption1 was not a loaded control class.
+Line 278: Class MSComctlLib.ListView of control listProspect was not a loaded control class.

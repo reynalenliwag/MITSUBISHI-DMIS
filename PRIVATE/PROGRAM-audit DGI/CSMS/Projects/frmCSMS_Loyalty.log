@@ -1,0 +1,10 @@
+Line 49: Class MSComDlg.CommonDialog of control CommonDialog1 was not a loaded control class.
+Line 70: Class MSComDlg.CommonDialog of control CDB1 was not a loaded control class.
+Line 117: Class wizFlexCracker.wizFlexCrack of control wizFlexCrack1 was not a loaded control class.
+Line 126: Class FlexCell.Grid of control Grid1 was not a loaded control class.
+Line 221: Class MSComCtl2.DTPicker of control dtpToDate was not a loaded control class.
+Line 244: Class MSComCtl2.DTPicker of control dtpFromDate was not a loaded control class.
+Line 304: Class wizProgBar.Prg of control Prgbr was not a loaded control class.
+Line 359: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption1 was not a loaded control class.
+Line 385: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption2 was not a loaded control class.
+Line 407: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption2 was not a loaded control class.

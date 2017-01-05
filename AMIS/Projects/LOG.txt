@@ -1,0 +1,1 @@
+Cannot insert the value NULL into column 'CUSTOMERCODE', table 'DMIS_CMC.dbo.AMIS_AR'; column does not allow nulls. INSERT fails.

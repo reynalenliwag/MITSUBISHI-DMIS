@@ -1,0 +1,92 @@
+Line 118: Class wizProgBar.Prg of control progCPB was not a loaded control class.
+Line 143: Class MSComCtl2.DTPicker of control dtpTranDate was not a loaded control class.
+Line 244: Class Crystal.CrystalReport of control rptAMISDueReport was not a loaded control class.
+Line 279: Class MSComCtl2.DTPicker of control dtpFrom was not a loaded control class.
+Line 300: Class MSComCtl2.DTPicker of control dtpTo was not a loaded control class.
+Line 364: Class MSComctlLib.ProgressBar of control PROGBAR was not a loaded control class.
+Line 438: Class MSComCtl2.DTPicker of control dtprocess was not a loaded control class.
+Line 502: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption2 was not a loaded control class.
+Line 562: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption1 was not a loaded control class.
+Line 610: Class MSComctlLib.ProgressBar of control ProgressBar1 was not a loaded control class.
+Line 870: Class MSComCtl2.DTPicker of control dtpAsOF was not a loaded control class.
+Line 1057: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption3 was not a loaded control class.
+Line 1080: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption4 was not a loaded control class.
+Line 1116: Class MSComctlLib.ProgressBar of control ProgressBar2 was not a loaded control class.
+Line 124: The property name _ExtentX in progCPB is invalid.
+Line 125: The property name _ExtentY in progCPB is invalid.
+Line 130: The property name BarPicture in progCPB is invalid.
+Line 131: The property name ShowText in progCPB is invalid.
+Line 141: The property name XpStyle in progCPB is invalid.
+Line 118: Property Picture in progCPB could not be set.
+Line 118: Property BorderStyle in progCPB could not be set.
+Line 118: Property Appearance in progCPB could not be set.
+Line 149: The property name _ExtentX in dtpTranDate is invalid.
+Line 150: The property name _ExtentY in dtpTranDate is invalid.
+Line 151: The property name _Version in dtpTranDate is invalid.
+Line 161: The property name Format in dtpTranDate is invalid.
+Line 162: The property name CurrentDate in dtpTranDate is invalid.
+Line 247: The property name _ExtentX in rptAMISDueReport is invalid.
+Line 248: The property name _ExtentY in rptAMISDueReport is invalid.
+Line 249: The property name _Version in rptAMISDueReport is invalid.
+Line 250: The property name WindowTitle in rptAMISDueReport is invalid.
+Line 251: The property name WindowControlBox in rptAMISDueReport is invalid.
+Line 252: The property name WindowMaxButton in rptAMISDueReport is invalid.
+Line 253: The property name WindowMinButton in rptAMISDueReport is invalid.
+Line 254: The property name WindowState in rptAMISDueReport is invalid.
+Line 255: The property name PrintFileLinesPerPage in rptAMISDueReport is invalid.
+Line 256: The property name WindowShowGroupTree in rptAMISDueReport is invalid.
+Line 257: The property name WindowAllowDrillDown in rptAMISDueReport is invalid.
+Line 258: The property name WindowShowCloseBtn in rptAMISDueReport is invalid.
+Line 259: The property name WindowShowSearchBtn in rptAMISDueReport is invalid.
+Line 260: The property name WindowShowPrintSetupBtn in rptAMISDueReport is invalid.
+Line 261: The property name WindowShowRefreshBtn in rptAMISDueReport is invalid.
+Line 285: The property name _ExtentX in dtpFrom is invalid.
+Line 286: The property name _ExtentY in dtpFrom is invalid.
+Line 287: The property name _Version in dtpFrom is invalid.
+Line 297: The property name Format in dtpFrom is invalid.
+Line 298: The property name CurrentDate in dtpFrom is invalid.
+Line 306: The property name _ExtentX in dtpTo is invalid.
+Line 307: The property name _ExtentY in dtpTo is invalid.
+Line 308: The property name _Version in dtpTo is invalid.
+Line 318: The property name Format in dtpTo is invalid.
+Line 319: The property name CurrentDate in dtpTo is invalid.
+Line 370: The property name _ExtentX in PROGBAR is invalid.
+Line 371: The property name _ExtentY in PROGBAR is invalid.
+Line 372: The property name _Version in PROGBAR is invalid.
+Line 444: The property name _ExtentX in dtprocess is invalid.
+Line 445: The property name _ExtentY in dtprocess is invalid.
+Line 446: The property name _Version in dtprocess is invalid.
+Line 456: The property name Format in dtprocess is invalid.
+Line 457: The property name CurrentDate in dtprocess is invalid.
+Line 508: The property name _Version in ShortcutCaption2 is invalid.
+Line 509: The property name _ExtentX in ShortcutCaption2 is invalid.
+Line 510: The property name _ExtentY in ShortcutCaption2 is invalid.
+Line 511: The property name _StockProps in ShortcutCaption2 is invalid.
+Line 522: The property name VisualTheme in ShortcutCaption2 is invalid.
+Line 568: The property name _Version in ShortcutCaption1 is invalid.
+Line 569: The property name _ExtentX in ShortcutCaption1 is invalid.
+Line 570: The property name _ExtentY in ShortcutCaption1 is invalid.
+Line 571: The property name _StockProps in ShortcutCaption1 is invalid.
+Line 582: The property name VisualTheme in ShortcutCaption1 is invalid.
+Line 616: The property name _ExtentX in ProgressBar1 is invalid.
+Line 617: The property name _ExtentY in ProgressBar1 is invalid.
+Line 618: The property name _Version in ProgressBar1 is invalid.
+Line 876: The property name _ExtentX in dtpAsOF is invalid.
+Line 877: The property name _ExtentY in dtpAsOF is invalid.
+Line 878: The property name _Version in dtpAsOF is invalid.
+Line 888: The property name Format in dtpAsOF is invalid.
+Line 889: The property name CurrentDate in dtpAsOF is invalid.
+Line 1063: The property name _Version in ShortcutCaption3 is invalid.
+Line 1064: The property name _ExtentX in ShortcutCaption3 is invalid.
+Line 1065: The property name _ExtentY in ShortcutCaption3 is invalid.
+Line 1066: The property name _StockProps in ShortcutCaption3 is invalid.
+Line 1077: The property name VisualTheme in ShortcutCaption3 is invalid.
+Line 1086: The property name _Version in ShortcutCaption4 is invalid.
+Line 1087: The property name _ExtentX in ShortcutCaption4 is invalid.
+Line 1088: The property name _ExtentY in ShortcutCaption4 is invalid.
+Line 1089: The property name _StockProps in ShortcutCaption4 is invalid.
+Line 1100: The property name VisualTheme in ShortcutCaption4 is invalid.
+Line 1122: The property name _ExtentX in ProgressBar2 is invalid.
+Line 1123: The property name _ExtentY in ProgressBar2 is invalid.
+Line 1124: The property name _Version in ProgressBar2 is invalid.
+Line 1126: The property name Scrolling in ProgressBar2 is invalid.

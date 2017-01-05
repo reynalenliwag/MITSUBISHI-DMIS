@@ -1,0 +1,93 @@
+Line 49: Class MSComctlLib.ListView of control lsvDet was not a loaded control class.
+Line 100: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption3 was not a loaded control class.
+Line 289: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption3 was not a loaded control class.
+Line 314: Class wizFlexCracker.wizFlexCrack of control wizFlexCrack1 was not a loaded control class.
+Line 369: Class MSComctlLib.ListView of control lsAdjustment was not a loaded control class.
+Line 463: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption was not a loaded control class.
+Line 603: Class XtremeReportControl.ReportControl of control rptLIST was not a loaded control class.
+Line 614: Class wizButton.cmd of control cmdX was not a loaded control class.
+Line 637: Class FlexCell.Grid of control Grid1 was not a loaded control class.
+Line 651: Class XtremeShortcutBar.ShortcutCaption of control ShortcutCaption2 was not a loaded control class.
+Line 55: The property name _ExtentX in lsvDet is invalid.
+Line 56: The property name _ExtentY in lsvDet is invalid.
+Line 57: The property name View in lsvDet is invalid.
+Line 58: The property name LabelEdit in lsvDet is invalid.
+Line 59: The property name LabelWrap in lsvDet is invalid.
+Line 60: The property name HideSelection in lsvDet is invalid.
+Line 61: The property name FullRowSelect in lsvDet is invalid.
+Line 62: The property name GridLines in lsvDet is invalid.
+Line 63: The property name _Version in lsvDet is invalid.
+Line 68: The property name NumItems in lsvDet is invalid.
+Line 72: The property name ColumnHeader(1) in lsvDet is invalid.
+Line 78: The property name ColumnHeader(2) in lsvDet is invalid.
+Line 84: The property name ColumnHeader(3) in lsvDet is invalid.
+Line 90: The property name ColumnHeader(4) in lsvDet is invalid.
+Line 94: The property name ColumnHeader(5) in lsvDet is invalid.
+Line 98: The property name ColumnHeader(6) in lsvDet is invalid.
+Line 107: The property name _Version in ShortcutCaption3 is invalid.
+Line 108: The property name _ExtentX in ShortcutCaption3 is invalid.
+Line 109: The property name _ExtentY in ShortcutCaption3 is invalid.
+Line 110: The property name _StockProps in ShortcutCaption3 is invalid.
+Line 111: The property name Caption in ShortcutCaption3 is invalid.
+Line 121: The property name GradientColorLight in ShortcutCaption3 is invalid.
+Line 122: The property name GradientColorDark in ShortcutCaption3 is invalid.
+Line 296: The property name _Version in ShortcutCaption3 is invalid.
+Line 297: The property name _ExtentX in ShortcutCaption3 is invalid.
+Line 298: The property name _ExtentY in ShortcutCaption3 is invalid.
+Line 299: The property name _StockProps in ShortcutCaption3 is invalid.
+Line 300: The property name Caption in ShortcutCaption3 is invalid.
+Line 310: The property name GradientColorLight in ShortcutCaption3 is invalid.
+Line 311: The property name GradientColorDark in ShortcutCaption3 is invalid.
+Line 320: The property name _ExtentX in wizFlexCrack1 is invalid.
+Line 321: The property name _ExtentY in wizFlexCrack1 is invalid.
+Line 375: The property name _ExtentX in lsAdjustment is invalid.
+Line 376: The property name _ExtentY in lsAdjustment is invalid.
+Line 377: The property name View in lsAdjustment is invalid.
+Line 378: The property name LabelEdit in lsAdjustment is invalid.
+Line 379: The property name LabelWrap in lsAdjustment is invalid.
+Line 380: The property name HideSelection in lsAdjustment is invalid.
+Line 381: The property name AllowReorder in lsAdjustment is invalid.
+Line 382: The property name FullRowSelect in lsAdjustment is invalid.
+Line 383: The property name GridLines in lsAdjustment is invalid.
+Line 384: The property name _Version in lsAdjustment is invalid.
+Line 400: The property name NumItems in lsAdjustment is invalid.
+Line 404: The property name ColumnHeader(1) in lsAdjustment is invalid.
+Line 410: The property name ColumnHeader(2) in lsAdjustment is invalid.
+Line 416: The property name ColumnHeader(3) in lsAdjustment is invalid.
+Line 422: The property name ColumnHeader(4) in lsAdjustment is invalid.
+Line 428: The property name ColumnHeader(5) in lsAdjustment is invalid.
+Line 434: The property name ColumnHeader(6) in lsAdjustment is invalid.
+Line 439: The property name ColumnHeader(7) in lsAdjustment is invalid.
+Line 369: Property MouseIcon in lsAdjustment could not be set.
+Line 469: The property name _Version in ShortcutCaption is invalid.
+Line 470: The property name _ExtentX in ShortcutCaption is invalid.
+Line 471: The property name _ExtentY in ShortcutCaption is invalid.
+Line 472: The property name _StockProps in ShortcutCaption is invalid.
+Line 473: The property name Caption in ShortcutCaption is invalid.
+Line 483: The property name GradientColorLight in ShortcutCaption is invalid.
+Line 484: The property name GradientColorDark in ShortcutCaption is invalid.
+Line 609: The property name _Version in rptLIST is invalid.
+Line 610: The property name _ExtentX in rptLIST is invalid.
+Line 611: The property name _ExtentY in rptLIST is invalid.
+Line 612: The property name _StockProps in rptLIST is invalid.
+Line 620: The property name _ExtentX in cmdX is invalid.
+Line 621: The property name _ExtentY in cmdX is invalid.
+Line 622: The property name TX in cmdX is invalid.
+Line 623: The property name ENAB in cmdX is invalid.
+Line 633: The property name FOCUSR in cmdX is invalid.
+Line 634: The property name MPTR in cmdX is invalid.
+Line 635: The property name MICON in cmdX is invalid.
+Line 643: The property name _ExtentX in Grid1 is invalid.
+Line 644: The property name _ExtentY in Grid1 is invalid.
+Line 645: The property name BackColorBkg in Grid1 is invalid.
+Line 646: The property name Cols in Grid1 is invalid.
+Line 647: The property name DefaultFontSize in Grid1 is invalid.
+Line 648: The property name DisplayRowIndex in Grid1 is invalid.
+Line 649: The property name Rows in Grid1 is invalid.
+Line 657: The property name _Version in ShortcutCaption2 is invalid.
+Line 658: The property name _ExtentX in ShortcutCaption2 is invalid.
+Line 659: The property name _ExtentY in ShortcutCaption2 is invalid.
+Line 660: The property name _StockProps in ShortcutCaption2 is invalid.
+Line 661: The property name Caption in ShortcutCaption2 is invalid.
+Line 671: The property name GradientColorLight in ShortcutCaption2 is invalid.
+Line 672: The property name GradientColorDark in ShortcutCaption2 is invalid.

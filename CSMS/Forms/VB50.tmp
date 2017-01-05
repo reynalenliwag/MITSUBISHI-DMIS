@@ -1,0 +1,1809 @@
+VERSION 5.00
+Object = "{00025600-0000-0000-C000-000000000046}#5.2#0"; "Crystl32.OCX"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
+Object = "{C8E5842E-102B-4289-9D57-3B3F5B5E15D3}#10.4#0"; "CO5248~1.OCX"
+Begin VB.Form frmCSMSClockINOUT 
+   BorderStyle     =   1  'Fixed Single
+   Caption         =   "Time Clock / Job Clock Log-In"
+   ClientHeight    =   9450
+   ClientLeft      =   45
+   ClientTop       =   330
+   ClientWidth     =   14385
+   BeginProperty Font 
+      Name            =   "Arial"
+      Size            =   9
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   ForeColor       =   &H8000000F&
+   Icon            =   "FrmClockINOUT.frx":0000
+   LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
+   ScaleHeight     =   9450
+   ScaleWidth      =   14385
+   StartUpPosition =   1  'CenterOwner
+   Begin MSComctlLib.ListView ListView1 
+      Height          =   2865
+      Left            =   180
+      TabIndex        =   63
+      Top             =   9510
+      Visible         =   0   'False
+      Width           =   5625
+      _ExtentX        =   9922
+      _ExtentY        =   5054
+      View            =   3
+      LabelEdit       =   1
+      LabelWrap       =   -1  'True
+      HideSelection   =   -1  'True
+      FullRowSelect   =   -1  'True
+      GridLines       =   -1  'True
+      _Version        =   393217
+      ForeColor       =   -2147483640
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Appearance      =   1
+      NumItems        =   2
+      BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         Text            =   "No"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   1
+         Text            =   "TechCode"
+         Object.Width           =   2540
+      EndProperty
+   End
+   Begin MSComctlLib.ImageList ImageList1 
+      Left            =   150
+      Top             =   1050
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      ImageWidth      =   45
+      ImageHeight     =   46
+      MaskColor       =   12632256
+      _Version        =   393216
+      BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+         NumListImages   =   3
+         BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "FrmClockINOUT.frx":058A
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "FrmClockINOUT.frx":0A17
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "FrmClockINOUT.frx":144A
+            Key             =   ""
+         EndProperty
+      EndProperty
+   End
+   Begin VB.ComboBox cbojStatus 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   450
+      Left            =   2670
+      Style           =   2  'Dropdown List
+      TabIndex        =   2
+      Top             =   120
+      Width           =   4215
+   End
+   Begin VB.PictureBox picClockOut 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00FFFFFF&
+      ForeColor       =   &H80000008&
+      Height          =   6225
+      Left            =   6930
+      ScaleHeight     =   6195
+      ScaleWidth      =   7365
+      TabIndex        =   21
+      Top             =   180
+      Visible         =   0   'False
+      Width           =   7395
+      Begin MSComCtl2.DTPicker DTPicker1 
+         Height          =   315
+         Left            =   4560
+         TabIndex        =   37
+         Top             =   -360
+         Visible         =   0   'False
+         Width           =   2475
+         _ExtentX        =   4366
+         _ExtentY        =   556
+         _Version        =   393216
+         CustomFormat    =   "MM/dd/yyyy hh:mm:ss tt"
+         Format          =   58982403
+         CurrentDate     =   39021
+      End
+      Begin VB.Timer Timer2 
+         Interval        =   500
+         Left            =   1170
+         Top             =   480
+      End
+      Begin VB.PictureBox Picture4 
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         ForeColor       =   &H80000008&
+         Height          =   885
+         Left            =   150
+         ScaleHeight     =   855
+         ScaleWidth      =   7035
+         TabIndex        =   32
+         Top             =   1590
+         Width           =   7065
+         Begin Crystal.CrystalReport rptClock 
+            Left            =   90
+            Top             =   30
+            _ExtentX        =   741
+            _ExtentY        =   741
+            _Version        =   348160
+            PrintFileLinesPerPage=   60
+         End
+         Begin VB.Label labOut 
+            BackStyle       =   0  'Transparent
+            Caption         =   "10/31/2006   02:32:25 AM"
+            BeginProperty Font 
+               Name            =   "Arial Black"
+               Size            =   14.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00C00000&
+            Height          =   345
+            Left            =   2580
+            TabIndex        =   36
+            Top             =   420
+            Width           =   4215
+         End
+         Begin VB.Label Label16 
+            BackStyle       =   0  'Transparent
+            Caption         =   "Clock Out Time  :"
+            BeginProperty Font 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   345
+            Left            =   480
+            TabIndex        =   35
+            Top             =   480
+            Width           =   2055
+         End
+         Begin VB.Label labIn 
+            BackStyle       =   0  'Transparent
+            Caption         =   "10/31/2006   02:32:25 AM"
+            BeginProperty Font 
+               Name            =   "Arial Black"
+               Size            =   14.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00404040&
+            Height          =   345
+            Left            =   2580
+            TabIndex        =   34
+            Top             =   30
+            Width           =   4215
+         End
+         Begin VB.Label Label14 
+            BackStyle       =   0  'Transparent
+            Caption         =   "Clock In Time  :"
+            BeginProperty Font 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   345
+            Left            =   660
+            TabIndex        =   33
+            Top             =   60
+            Width           =   1965
+         End
+      End
+      Begin VB.PictureBox Picture3 
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         ForeColor       =   &H80000008&
+         Height          =   1665
+         Left            =   150
+         ScaleHeight     =   1635
+         ScaleWidth      =   7035
+         TabIndex        =   22
+         Top             =   2700
+         Width           =   7065
+         Begin VB.ComboBox cboReasonClockingout 
+            BeginProperty Font 
+               Name            =   "Arial Narrow"
+               Size            =   14.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   465
+            Left            =   3060
+            Style           =   2  'Dropdown List
+            TabIndex        =   30
+            Top             =   1050
+            Width           =   3855
+         End
+         Begin VB.Label labIdleReason 
+            Alignment       =   1  'Right Justify
+            BackStyle       =   0  'Transparent
+            Height          =   285
+            Left            =   6090
+            TabIndex        =   61
+            Top             =   180
+            Visible         =   0   'False
+            Width           =   615
+         End
+         Begin VB.Label labHours 
+            Alignment       =   1  'Right Justify
+            BackStyle       =   0  'Transparent
+            Caption         =   "12.56"
+            BeginProperty Font 
+               Name            =   "Arial Narrow"
+               Size            =   15.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00C00000&
+            Height          =   375
+            Left            =   5970
+            TabIndex        =   31
+            Top             =   540
+            Width           =   975
+         End
+         Begin VB.Label Label6 
+            BackStyle       =   0  'Transparent
+            Caption         =   "Reason for Clocking Out"
+            BeginProperty Font 
+               Name            =   "Arial Narrow"
+               Size            =   14.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   405
+            Left            =   120
+            TabIndex        =   29
+            Top             =   1080
+            Width           =   2985
+         End
+         Begin VB.Label Label10 
+            BackStyle       =   0  'Transparent
+            Caption         =   "Employee :"
+            BeginProperty Font 
+               Name            =   "Arial Black"
+               Size            =   12
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   375
+            Left            =   180
+            TabIndex        =   25
+            Top             =   90
+            Width           =   1575
+         End
+         Begin VB.Label labEmployeeOut 
+            BackStyle       =   0  'Transparent
+            Caption         =   "Status:"
+            BeginProperty Font 
+               Name            =   "Arial Black"
+               Size            =   15.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   465
+            Left            =   1740
+            TabIndex        =   24
+            Top             =   30
+            Width           =   5085
+         End
+         Begin VB.Label Label8 
+            BackStyle       =   0  'Transparent
+            Caption         =   "You are Clocking Out, your hour for this period are"
+            BeginProperty Font 
+               Name            =   "Arial Narrow"
+               Size            =   14.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   405
+            Left            =   120
+            TabIndex        =   23
+            Top             =   540
+            Width           =   5865
+         End
+      End
+      Begin VB.CommandButton cmdOutCancel 
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   585
+         Left            =   5460
+         Picture         =   "FrmClockINOUT.frx":1EBF
+         Style           =   1  'Graphical
+         TabIndex        =   18
+         ToolTipText     =   "Cancel "
+         Top             =   5400
+         Width           =   1575
+      End
+      Begin VB.CommandButton Command4 
+         Height          =   585
+         Left            =   3750
+         Picture         =   "FrmClockINOUT.frx":5435
+         Style           =   1  'Graphical
+         TabIndex        =   16
+         ToolTipText     =   "Print Time Card"
+         Top             =   7140
+         Width           =   1575
+      End
+      Begin MSComCtl2.DTPicker DTClockIn 
+         Height          =   315
+         Left            =   4560
+         TabIndex        =   39
+         Top             =   -750
+         Visible         =   0   'False
+         Width           =   2475
+         _ExtentX        =   4366
+         _ExtentY        =   556
+         _Version        =   393216
+         CustomFormat    =   "MM/dd/yyyy hh:mm:ss tt"
+         Format          =   58982403
+         CurrentDate     =   39021
+      End
+      Begin VB.CommandButton cmdOut 
+         Height          =   585
+         Left            =   3900
+         Picture         =   "FrmClockINOUT.frx":8ECB
+         Style           =   1  'Graphical
+         TabIndex        =   17
+         ToolTipText     =   "Clock Out Technician"
+         Top             =   5400
+         Width           =   1575
+      End
+      Begin XtremeShortcutBar.ShortcutCaption ShortcutCaption2 
+         Height          =   345
+         Left            =   0
+         TabIndex        =   87
+         Top             =   0
+         Width           =   7395
+         _Version        =   655364
+         _ExtentX        =   13044
+         _ExtentY        =   609
+         _StockProps     =   14
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         GradientColorLight=   16711680
+         GradientColorDark=   8388608
+      End
+      Begin VB.Label labOutItemNo 
+         Alignment       =   2  'Center
+         BackColor       =   &H00FFFFFF&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   465
+         Left            =   150
+         TabIndex        =   79
+         Top             =   4410
+         Visible         =   0   'False
+         Width           =   795
+      End
+      Begin VB.Label Label9 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Clock Out"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   21.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00404040&
+         Height          =   615
+         Left            =   2520
+         TabIndex        =   62
+         Top             =   480
+         Width           =   2205
+      End
+      Begin VB.Label Label13 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Clock Out"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H000000C0&
+         Height          =   405
+         Left            =   2790
+         TabIndex        =   28
+         Top             =   -600
+         Visible         =   0   'False
+         Width           =   1665
+      End
+      Begin VB.Label Label12 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Status:"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   1770
+         TabIndex        =   27
+         Top             =   -600
+         Visible         =   0   'False
+         Width           =   1005
+      End
+      Begin VB.Label Label11 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Time Clock"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00404040&
+         Height          =   405
+         Left            =   2520
+         TabIndex        =   26
+         Top             =   -360
+         Visible         =   0   'False
+         Width           =   1995
+      End
+      Begin VB.Image Image2 
+         Height          =   555
+         Left            =   90
+         Picture         =   "FrmClockINOUT.frx":C961
+         Stretch         =   -1  'True
+         Top             =   450
+         Width           =   705
+      End
+   End
+   Begin VB.PictureBox picClockIn 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00FFFFFF&
+      ForeColor       =   &H80000008&
+      Height          =   6225
+      Left            =   6930
+      ScaleHeight     =   6195
+      ScaleWidth      =   7365
+      TabIndex        =   5
+      Top             =   180
+      Visible         =   0   'False
+      Width           =   7395
+      Begin VB.Timer Timer1 
+         Interval        =   500
+         Left            =   4590
+         Top             =   240
+      End
+      Begin VB.CommandButton Command1 
+         Height          =   585
+         Left            =   540
+         Picture         =   "FrmClockINOUT.frx":CDA3
+         Style           =   1  'Graphical
+         TabIndex        =   12
+         ToolTipText     =   "Print Time Card"
+         Top             =   7350
+         Width           =   1575
+      End
+      Begin VB.CommandButton cmdInCancel 
+         Height          =   585
+         Left            =   5610
+         Picture         =   "FrmClockINOUT.frx":10839
+         Style           =   1  'Graphical
+         TabIndex        =   15
+         ToolTipText     =   "Cancel"
+         Top             =   5310
+         Width           =   1575
+      End
+      Begin VB.CommandButton cmdIn 
+         Height          =   585
+         Left            =   4050
+         Picture         =   "FrmClockINOUT.frx":13DAF
+         Style           =   1  'Graphical
+         TabIndex        =   14
+         ToolTipText     =   "Clock In Technician"
+         Top             =   5310
+         Width           =   1575
+      End
+      Begin VB.PictureBox Picture2 
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         ForeColor       =   &H80000008&
+         Height          =   3585
+         Left            =   90
+         ScaleHeight     =   3555
+         ScaleWidth      =   7095
+         TabIndex        =   9
+         Top             =   1590
+         Width           =   7125
+         Begin VB.Label Label28 
+            Alignment       =   1  'Right Justify
+            BackStyle       =   0  'Transparent
+            Caption         =   "Time  :"
+            BeginProperty Font 
+               Name            =   "Arial Narrow"
+               Size            =   14.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   405
+            Left            =   150
+            TabIndex        =   81
+            Top             =   2700
+            Width           =   4245
+         End
+         Begin VB.Label Label25 
+            Alignment       =   1  'Right Justify
+            BackStyle       =   0  'Transparent
+            Caption         =   "Date  :"
+            BeginProperty Font 
+               Name            =   "Arial Narrow"
+               Size            =   14.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   405
+            Left            =   150
+            TabIndex        =   80
+            Top             =   2190
+            Width           =   4245
+         End
+         Begin VB.Label labJobDesc 
+            BackColor       =   &H00E0E0E0&
+            BorderStyle     =   1  'Fixed Single
+            BeginProperty Font 
+               Name            =   "Arial"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   675
+            Left            =   120
+            TabIndex        =   77
+            Top             =   1020
+            Width           =   6885
+         End
+         Begin VB.Label labJobCode 
+            BackColor       =   &H00E0E0E0&
+            BorderStyle     =   1  'Fixed Single
+            BeginProperty Font 
+               Name            =   "Arial"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   375
+            Left            =   120
+            TabIndex        =   76
+            Top             =   630
+            Width           =   2655
+         End
+         Begin VB.Label labtime 
+            BackStyle       =   0  'Transparent
+            Caption         =   "01:32:25 PM"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   14.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00C00000&
+            Height          =   345
+            Left            =   4710
+            TabIndex        =   20
+            Top             =   2700
+            Width           =   1755
+         End
+         Begin VB.Label labDate 
+            BackStyle       =   0  'Transparent
+            Caption         =   "10/31/2006"
+            BeginProperty Font 
+               Name            =   "Arial Narrow"
+               Size            =   15.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00C00000&
+            Height          =   315
+            Left            =   4770
+            TabIndex        =   19
+            Top             =   2220
+            Width           =   1335
+         End
+         Begin VB.Label Label5 
+            BackStyle       =   0  'Transparent
+            Caption         =   "You will be Clocked In for this Job  :"
+            BeginProperty Font 
+               Name            =   "Arial Narrow"
+               Size            =   14.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   405
+            Left            =   150
+            TabIndex        =   13
+            Top             =   1740
+            Width           =   4545
+         End
+         Begin VB.Label labEmployeein 
+            BackStyle       =   0  'Transparent
+            Caption         =   "Status:"
+            BeginProperty Font 
+               Name            =   "Arial Black"
+               Size            =   15.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   435
+            Left            =   1710
+            TabIndex        =   11
+            Top             =   60
+            Width           =   5085
+         End
+         Begin VB.Label Label4 
+            BackStyle       =   0  'Transparent
+            Caption         =   "Employee :"
+            BeginProperty Font 
+               Name            =   "Arial Black"
+               Size            =   12
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   375
+            Left            =   150
+            TabIndex        =   10
+            Top             =   90
+            Width           =   1575
+         End
+         Begin VB.Label labJobItemNo 
+            Alignment       =   2  'Center
+            BackColor       =   &H00E0E0E0&
+            BorderStyle     =   1  'Fixed Single
+            BeginProperty Font 
+               Name            =   "Arial"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   375
+            Left            =   2790
+            TabIndex        =   78
+            Top             =   630
+            Visible         =   0   'False
+            Width           =   705
+         End
+      End
+      Begin MSComCtl2.DTPicker DTPicker2 
+         Height          =   315
+         Left            =   7500
+         TabIndex        =   38
+         Top             =   870
+         Visible         =   0   'False
+         Width           =   2355
+         _ExtentX        =   4154
+         _ExtentY        =   556
+         _Version        =   393216
+         CustomFormat    =   "MM/dd/yyyy hh:mm:ss tt"
+         Format          =   58982403
+         CurrentDate     =   39021
+      End
+      Begin XtremeShortcutBar.ShortcutCaption ShortcutCaption1 
+         Height          =   345
+         Left            =   -30
+         TabIndex        =   86
+         Top             =   0
+         Width           =   7425
+         _Version        =   655364
+         _ExtentX        =   13097
+         _ExtentY        =   609
+         _StockProps     =   14
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         GradientColorLight=   16711680
+         GradientColorDark=   8388608
+      End
+      Begin VB.Image Image1 
+         Height          =   585
+         Left            =   210
+         Picture         =   "FrmClockINOUT.frx":17325
+         Stretch         =   -1  'True
+         Top             =   510
+         Width           =   765
+      End
+      Begin VB.Label Label3 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Time Clock"
+         BeginProperty Font 
+            Name            =   "Arial Black"
+            Size            =   20.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   645
+         Left            =   1890
+         TabIndex        =   8
+         Top             =   -1140
+         Width           =   2835
+      End
+      Begin VB.Label Label2 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Status:"
+         BeginProperty Font 
+            Name            =   "Arial Black"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   1590
+         TabIndex        =   7
+         Top             =   -420
+         Visible         =   0   'False
+         Width           =   1005
+      End
+      Begin VB.Label lblIS_TECH_STATUS 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Clock In"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   21.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00404040&
+         Height          =   645
+         Left            =   2610
+         TabIndex        =   6
+         Top             =   540
+         Width           =   1755
+      End
+   End
+   Begin VB.PictureBox Picture1 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00FFFFFF&
+      ForeColor       =   &H80000008&
+      Height          =   6225
+      Left            =   6930
+      ScaleHeight     =   6195
+      ScaleWidth      =   7365
+      TabIndex        =   40
+      Top             =   180
+      Width           =   7395
+      Begin VB.Frame Frame1 
+         BackColor       =   &H00FFFFFF&
+         Caption         =   "Jobs for Service "
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00004000&
+         Height          =   4635
+         Left            =   60
+         TabIndex        =   60
+         Top             =   1530
+         Width           =   7245
+         Begin TabDlg.SSTab lblJob4ServicePast 
+            Height          =   4590
+            Left            =   0
+            TabIndex        =   67
+            Top             =   0
+            Width           =   7245
+            _ExtentX        =   12779
+            _ExtentY        =   8096
+            _Version        =   393216
+            Tabs            =   1
+            TabsPerRow      =   1
+            TabHeight       =   794
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   11.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TabCaption(0)   =   "Tab 0"
+            TabPicture(0)   =   "FrmClockINOUT.frx":17767
+            Tab(0).ControlEnabled=   -1  'True
+            Tab(0).Control(0)=   "lblJob4Service"
+            Tab(0).Control(0).Enabled=   0   'False
+            Tab(0).ControlCount=   1
+            Begin MSComctlLib.ListView lblJob4Service 
+               Height          =   4365
+               Left            =   60
+               TabIndex        =   68
+               Top             =   120
+               Width           =   7095
+               _ExtentX        =   12515
+               _ExtentY        =   7699
+               View            =   3
+               LabelEdit       =   1
+               Sorted          =   -1  'True
+               LabelWrap       =   -1  'True
+               HideSelection   =   -1  'True
+               AllowReorder    =   -1  'True
+               FullRowSelect   =   -1  'True
+               GridLines       =   -1  'True
+               _Version        =   393217
+               SmallIcons      =   "ImageList1"
+               ForeColor       =   0
+               BackColor       =   16777215
+               BorderStyle     =   1
+               Appearance      =   0
+               MousePointer    =   99
+               BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                  Name            =   "Verdana"
+                  Size            =   9
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               MouseIcon       =   "FrmClockINOUT.frx":17783
+               NumItems        =   6
+               BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+                  Text            =   "Job Code"
+                  Object.Width           =   2999
+               EndProperty
+               BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+                  SubItemIndex    =   1
+                  Text            =   " Jobs Description"
+                  Object.Width           =   7056
+               EndProperty
+               BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+                  Alignment       =   2
+                  SubItemIndex    =   2
+                  Text            =   "Std.Rate"
+                  Object.Width           =   1676
+               EndProperty
+               BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+                  SubItemIndex    =   3
+                  Text            =   "Line No"
+                  Object.Width           =   0
+               EndProperty
+               BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+                  SubItemIndex    =   4
+                  Text            =   "Note"
+                  Object.Width           =   0
+               EndProperty
+               BeginProperty ColumnHeader(6) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+                  SubItemIndex    =   5
+                  Text            =   "STATUS"
+                  Object.Width           =   0
+               EndProperty
+            End
+         End
+         Begin VB.PictureBox theIdlePic 
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000005&
+            FillColor       =   &H00FFFFFF&
+            ForeColor       =   &H80000008&
+            Height          =   4605
+            Left            =   0
+            ScaleHeight     =   4575
+            ScaleWidth      =   7215
+            TabIndex        =   69
+            Top             =   0
+            Width           =   7245
+            Begin VB.CommandButton Command2 
+               Caption         =   "Refresh"
+               Height          =   495
+               Left            =   6000
+               TabIndex        =   89
+               Top             =   420
+               Width           =   1065
+            End
+            Begin VB.ComboBox cboIdleTemplate 
+               BeginProperty Font 
+                  Name            =   "Verdana"
+                  Size            =   14.25
+                  Charset         =   0
+                  Weight          =   400
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   465
+               Left            =   150
+               Style           =   2  'Dropdown List
+               TabIndex        =   88
+               Top             =   450
+               Width           =   5805
+            End
+            Begin VB.CommandButton cmdCancelidle 
+               Caption         =   "Cancel"
+               Height          =   525
+               Left            =   6270
+               TabIndex        =   75
+               Top             =   3900
+               Width           =   795
+            End
+            Begin VB.CommandButton CmdIdle 
+               Caption         =   "Ok"
+               Height          =   525
+               Left            =   5460
+               TabIndex        =   74
+               Top             =   3900
+               Width           =   825
+            End
+            Begin VB.TextBox txtidle 
+               Height          =   1845
+               Left            =   150
+               MultiLine       =   -1  'True
+               ScrollBars      =   2  'Vertical
+               TabIndex        =   71
+               Top             =   1020
+               Width           =   6915
+            End
+            Begin VB.Label Label24 
+               BackStyle       =   0  'Transparent
+               Caption         =   "Please Input your reason\s for clocking out,and be specific.."
+               BeginProperty Font 
+                  Name            =   "Arial"
+                  Size            =   9
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   285
+               Left            =   210
+               TabIndex        =   73
+               Top             =   3300
+               Width           =   6135
+            End
+            Begin VB.Label Label23 
+               BackStyle       =   0  'Transparent
+               Caption         =   "Note:"
+               BeginProperty Font 
+                  Name            =   "Arial"
+                  Size            =   9
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               ForeColor       =   &H000000FF&
+               Height          =   285
+               Left            =   210
+               TabIndex        =   72
+               Top             =   3030
+               Width           =   555
+            End
+            Begin VB.Label Label22 
+               BackStyle       =   0  'Transparent
+               Caption         =   "Reason for Idle time"
+               BeginProperty Font 
+                  Name            =   "Arial"
+                  Size            =   12
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   435
+               Left            =   150
+               TabIndex        =   70
+               Top             =   60
+               Width           =   2325
+            End
+         End
+      End
+      Begin VB.Frame TrapNoRO 
+         BackColor       =   &H00FFFFFF&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1545
+         Left            =   60
+         TabIndex        =   64
+         Top             =   4500
+         Width           =   7245
+         Begin VB.Timer Timer3 
+            Interval        =   500
+            Left            =   1080
+            Top             =   660
+         End
+         Begin VB.PictureBox Picture7 
+            BackColor       =   &H00FFFFFF&
+            BorderStyle     =   0  'None
+            Height          =   735
+            Left            =   3420
+            Picture         =   "FrmClockINOUT.frx":178E5
+            ScaleHeight     =   735
+            ScaleWidth      =   705
+            TabIndex        =   66
+            Top             =   210
+            Width           =   705
+         End
+         Begin VB.Label Label19 
+            BackStyle       =   0  'Transparent
+            Caption         =   "No Repair Order "
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   18
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00000000&
+            Height          =   525
+            Left            =   2070
+            TabIndex        =   65
+            Top             =   990
+            Width           =   3405
+         End
+      End
+      Begin VB.Label Label17 
+         Alignment       =   1  'Right Justify
+         BackStyle       =   0  'Transparent
+         Caption         =   "Promise"
+         Height          =   255
+         Left            =   4770
+         TabIndex        =   59
+         Top             =   90
+         Width           =   825
+      End
+      Begin VB.Label labPromise 
+         BackColor       =   &H00FF8080&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   5700
+         TabIndex        =   58
+         Top             =   90
+         Width           =   1605
+      End
+      Begin VB.Label labVinNo 
+         BackColor       =   &H00FF8080&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   3120
+         TabIndex        =   57
+         Top             =   1170
+         Width           =   1695
+      End
+      Begin VB.Label Label29 
+         BackColor       =   &H8000000D&
+         BackStyle       =   0  'Transparent
+         Caption         =   "VIN No."
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   285
+         Left            =   2370
+         TabIndex        =   56
+         Top             =   1230
+         Width           =   765
+      End
+      Begin VB.Label labSection 
+         BackColor       =   &H00FF8080&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   1020
+         TabIndex        =   55
+         Top             =   1170
+         Width           =   1185
+      End
+      Begin VB.Label Label27 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Section "
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   285
+         Left            =   60
+         TabIndex        =   54
+         Top             =   1200
+         Width           =   915
+      End
+      Begin VB.Label labkmRdg 
+         BackColor       =   &H00FF8080&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   5700
+         TabIndex        =   53
+         Top             =   1170
+         Width           =   1605
+      End
+      Begin VB.Label labActNo 
+         BackColor       =   &H00FF8080&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   1020
+         TabIndex        =   52
+         Top             =   450
+         Width           =   1365
+      End
+      Begin VB.Label labPlateNo 
+         BackColor       =   &H00FF8080&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   5700
+         TabIndex        =   51
+         Top             =   810
+         Width           =   1605
+      End
+      Begin VB.Label labVehicle 
+         BackColor       =   &H00FF8080&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   1020
+         TabIndex        =   50
+         Top             =   810
+         Width           =   3795
+      End
+      Begin VB.Label Label21 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H8000000D&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Plate No."
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   315
+         Left            =   4830
+         TabIndex        =   49
+         Top             =   870
+         Width           =   795
+      End
+      Begin VB.Label Label26 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Vehicle"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   315
+         Left            =   30
+         TabIndex        =   48
+         Top             =   840
+         Width           =   915
+      End
+      Begin VB.Label Label20 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H8000000D&
+         BackStyle       =   0  'Transparent
+         Caption         =   "KM Rdg."
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   4830
+         TabIndex        =   47
+         Top             =   1200
+         Width           =   825
+      End
+      Begin VB.Label labApptDate 
+         BackColor       =   &H00FF8080&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   3390
+         TabIndex        =   46
+         Top             =   90
+         Width           =   1425
+      End
+      Begin VB.Label Label18 
+         Alignment       =   1  'Right Justify
+         BackStyle       =   0  'Transparent
+         Caption         =   "Date"
+         Height          =   255
+         Left            =   2850
+         TabIndex        =   45
+         Top             =   90
+         Width           =   435
+      End
+      Begin VB.Label labRO 
+         BackColor       =   &H00FF8080&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   1020
+         TabIndex        =   44
+         Top             =   90
+         Width           =   1695
+      End
+      Begin VB.Label Label15 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   " R/O No."
+         ForeColor       =   &H80000008&
+         Height          =   315
+         Left            =   30
+         TabIndex        =   43
+         Top             =   120
+         Width           =   915
+      End
+      Begin VB.Label labCustomer 
+         BackColor       =   &H00FF8080&
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Left            =   2400
+         TabIndex        =   42
+         Top             =   450
+         Width           =   4905
+      End
+      Begin VB.Label Label7 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Customer"
+         ForeColor       =   &H80000008&
+         Height          =   285
+         Left            =   30
+         TabIndex        =   41
+         Top             =   480
+         Width           =   915
+      End
+   End
+   Begin MSComctlLib.ListView lblTech 
+      Height          =   6525
+      Left            =   60
+      TabIndex        =   0
+      Top             =   630
+      Width           =   6825
+      _ExtentX        =   12039
+      _ExtentY        =   11509
+      View            =   3
+      LabelEdit       =   1
+      LabelWrap       =   -1  'True
+      HideSelection   =   -1  'True
+      AllowReorder    =   -1  'True
+      FullRowSelect   =   -1  'True
+      GridLines       =   -1  'True
+      _Version        =   393217
+      ForeColor       =   0
+      BackColor       =   16777215
+      BorderStyle     =   1
+      Appearance      =   0
+      MousePointer    =   99
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   11.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      MouseIcon       =   "FrmClockINOUT.frx":18191
+      NumItems        =   7
+      BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         Text            =   "Code"
+         Object.Width           =   0
+      EndProperty
+      BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   1
+         Text            =   "Technician"
+         Object.Width           =   3704
+      EndProperty
+      BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   2
+         Text            =   "R. Order"
+         Object.Width           =   3881
+      EndProperty
+      BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   3
+         Text            =   "Status"
+         Object.Width           =   4410
+      EndProperty
+      BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   4
+         Text            =   "Techname"
+         Object.Width           =   0
+      EndProperty
+      BeginProperty ColumnHeader(6) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   5
+         Text            =   "In/Out"
+         Object.Width           =   0
+      EndProperty
+      BeginProperty ColumnHeader(7) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   6
+         Text            =   "techcode"
+         Object.Width           =   2
+      EndProperty
+   End
+   Begin MSComctlLib.ListView lstDTR 
+      Height          =   2175
+      Left            =   60
+      TabIndex        =   3
+      Top             =   7230
+      Width           =   14295
+      _ExtentX        =   25215
+      _ExtentY        =   3836
+      View            =   3
+      LabelEdit       =   1
+      Sorted          =   -1  'True
+      LabelWrap       =   -1  'True
+      HideSelection   =   -1  'True
+      AllowReorder    =   -1  'True
+      FullRowSelect   =   -1  'True
+      GridLines       =   -1  'True
+      _Version        =   393217
+      ForeColor       =   0
+      BackColor       =   16777215
+      BorderStyle     =   1
+      Appearance      =   0
+      MousePointer    =   99
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      MouseIcon       =   "FrmClockINOUT.frx":182F3
+      NumItems        =   9
+      BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         Text            =   "Date"
+         Object.Width           =   2293
+      EndProperty
+      BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   1
+         Text            =   "RO Number"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   2
+         Text            =   "Time In Am"
+         Object.Width           =   2646
+      EndProperty
+      BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   3
+         Text            =   "Time Out PM"
+         Object.Width           =   2646
+      EndProperty
+      BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   4
+         Text            =   "Clock-In"
+         Object.Width           =   2646
+      EndProperty
+      BeginProperty ColumnHeader(6) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   5
+         Text            =   "Clock-Out"
+         Object.Width           =   2646
+      EndProperty
+      BeginProperty ColumnHeader(7) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         Alignment       =   2
+         SubItemIndex    =   6
+         Text            =   "Hours"
+         Object.Width           =   2117
+      EndProperty
+      BeginProperty ColumnHeader(8) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   7
+         Text            =   "Job Code"
+         Object.Width           =   3528
+      EndProperty
+      BeginProperty ColumnHeader(9) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   8
+         Text            =   "Clock Out - Status"
+         Object.Width           =   3616
+      EndProperty
+   End
+   Begin VB.PictureBox Picture8 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00FFFFFF&
+      ForeColor       =   &H80000008&
+      Height          =   645
+      Left            =   6930
+      ScaleHeight     =   615
+      ScaleWidth      =   7365
+      TabIndex        =   82
+      Top             =   6510
+      Width           =   7395
+      Begin VB.Label Label30 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "FINISH JOB"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00004080&
+         Height          =   240
+         Left            =   5880
+         TabIndex        =   85
+         Top             =   165
+         Width           =   1095
+      End
+      Begin VB.Image Image3 
+         Height          =   555
+         Left            =   5340
+         Picture         =   "FrmClockINOUT.frx":18455
+         Stretch         =   -1  'True
+         Top             =   0
+         Width           =   570
+      End
+      Begin VB.Image img1 
+         Height          =   510
+         Left            =   210
+         Picture         =   "FrmClockINOUT.frx":188D2
+         Stretch         =   -1  'True
+         Top             =   60
+         Width           =   600
+      End
+      Begin VB.Label lblIPD 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "NOT STARTED"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00808000&
+         Height          =   240
+         Left            =   840
+         TabIndex        =   84
+         Top             =   180
+         Width           =   1365
+      End
+      Begin VB.Label lblOPD 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "WORK IN PROCESS"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000080&
+         Height          =   240
+         Left            =   3165
+         TabIndex        =   83
+         Top             =   165
+         Width           =   1875
+      End
+      Begin VB.Image img2 
+         Height          =   555
+         Left            =   2565
+         Picture         =   "FrmClockINOUT.frx":192F5
+         Stretch         =   -1  'True
+         Top             =   60
+         Width           =   540
+      End
+   End
+   Begin VB.Label Label1 
+      Caption         =   "Tech. Job Status"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   11.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   315
+      Left            =   480
+      TabIndex        =   1
+      Top             =   180
+      Width           =   2115
+   End
+   Begin MSForms.CommandButton CommandButton1 
+      Height          =   4845
+      Left            =   -120
+      TabIndex        =   4
+      Top             =   1380
+      Visible         =   0   'False
+      Width           =   7395
+      VariousPropertyBits=   25
+      Size            =   "13044;8546"
+      FontName        =   "Arial"
+      FontEffects     =   1073750016
+      FontHeight      =   180
+      FontCharSet     =   0
+      FontPitchAndFamily=   2
+      ParagraphAlign  =   3
+   End
+End

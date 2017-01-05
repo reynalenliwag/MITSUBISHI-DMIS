@@ -1,0 +1,3 @@
+Line 82: Class Crystal.CrystalReport of control rptSales was not a loaded control class.
+Line 294: Class MSComCtl2.DTPicker of control dt_Range_From was not a loaded control class.
+Line 317: Class MSComCtl2.DTPicker of control dt_Range_To was not a loaded control class.
